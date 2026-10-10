@@ -4,15 +4,23 @@ interface RevealProps {
   children: ReactNode;
   className?: string;
   delay?: number;
+  immediate?: boolean;
 }
 
-export default function Reveal({ children, className = '', delay = 0 }: RevealProps) {
+export default function Reveal({ children, className = '', delay = 0, immediate = false }: RevealProps) {
   const elementRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const element = elementRef.current;
     if (!element) return;
+
+    // For multi-page app, show immediately if immediate is true
+    if (immediate) {
+      setVisible(true);
+      return;
+    }
+
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion || !('IntersectionObserver' in window)) {
       setVisible(true);
@@ -27,7 +35,7 @@ export default function Reveal({ children, className = '', delay = 0 }: RevealPr
     }, { threshold: 0.12, rootMargin: '0px 0px -36px 0px' });
     observer.observe(element);
     return () => observer.disconnect();
-  }, []);
+  }, [immediate]);
 
   return (
     <div

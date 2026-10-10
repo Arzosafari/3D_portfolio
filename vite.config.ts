@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  server: { host: '0.0.0.0', allowedHosts: true },
+  server: { host: '0.0.0.0', allowedHosts: true, historyApiFallback: true },
   preview: { host: '0.0.0.0', allowedHosts: true },
   build: {
     // The WebGL stack is lazy-loaded away from the initial page; its combined transfer is about 265 KB gzip.
