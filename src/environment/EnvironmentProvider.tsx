@@ -9,10 +9,14 @@ interface EnvironmentContextValue {
   activeSection: string;
   aiState: EnvironmentAIState;
   profile: EnvironmentProfile;
+  /** UI-driven focus key (hovered project, active capability, lab feature…). */
+  focus: string | null;
+  focusRef: { current: string | null };
   progressRef: { current: number };
   pointerRef: { current: { x: number; y: number } };
   setAIState: (state: EnvironmentAIState) => void;
   setProfile: (profile: EnvironmentProfile) => void;
+  setFocus: (focus: string | null) => void;
 }
 
 const EnvironmentContext = createContext<EnvironmentContextValue | null>(null);
@@ -20,11 +24,18 @@ const EnvironmentContext = createContext<EnvironmentContextValue | null>(null);
 export function EnvironmentProvider({ children }: { children: ReactNode }) {
   const progressRef = useRef(0);
   const pointerRef = useRef({ x: 0, y: 0 });
+  const focusRef = useRef<string | null>(null);
   const activeSectionRef = useRef('entry');
   const [activeSection, setActiveSection] = useState('entry');
   const [aiState, setAIStateValue] = useState<EnvironmentAIState>('idle');
   const [profile, setProfileValue] = useState<EnvironmentProfile>({});
+  const [focus, setFocusValue] = useState<string | null>(null);
   const frameRef = useRef(0);
+
+  const setFocus = useCallback((next: string | null) => {
+    focusRef.current = next;
+    setFocusValue(next);
+  }, []);
 
   const setAIState = useCallback((state: EnvironmentAIState) => {
     setAIStateValue(state);
@@ -94,11 +105,14 @@ export function EnvironmentProvider({ children }: { children: ReactNode }) {
     activeSection,
     aiState,
     profile,
+    focus,
+    focusRef,
     progressRef,
     pointerRef,
     setAIState,
     setProfile,
-  }), [activeSection, aiState, profile, setAIState, setProfile]);
+    setFocus,
+  }), [activeSection, aiState, profile, focus, setAIState, setProfile, setFocus]);
 
   return <EnvironmentContext.Provider value={value}>{children}</EnvironmentContext.Provider>;
 }
