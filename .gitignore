@@ -40,3 +40,6 @@ lerna-debug.log*
 # Temporary files
 *.tmp
 *.temp
+
+# TypeScript build info
+*.tsbuildinfo

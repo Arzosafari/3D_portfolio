@@ -1,13 +1,6 @@
-import { useState } from 'react';
-
-type LabFeature = 'assistant' | 'recommendations' | 'personalization' | 'search';
-
-const features: Array<{ id: LabFeature; number: string; title: string; description: string; glyph: string }> = [
-  { id: 'assistant', number: '01', title: 'AI assistant', description: 'Useful answers, built around your brand.', glyph: '↗' },
-  { id: 'recommendations', number: '02', title: 'Smart recommendation', description: 'Help people find their next best choice.', glyph: '✳' },
-  { id: 'personalization', number: '03', title: 'Personalization', description: 'A relevant experience for every visitor.', glyph: '◉' },
-  { id: 'search', number: '04', title: 'Intelligent search', description: 'Understand the intent behind a question.', glyph: '⌕' },
-];
+import { useEffect, useState } from 'react';
+import { labFeatures as features, type LabFeature } from '../../data/labFeatures';
+import { useEnvironment } from '../../environment/EnvironmentProvider';
 
 function AssistantDemo() {
   const questions = [
@@ -109,7 +102,14 @@ function DemoForFeature({ feature }: { feature: LabFeature }) {
 
 export default function ExperienceLab() {
   const [activeFeature, setActiveFeature] = useState<LabFeature>('assistant');
+  const { setFocus } = useEnvironment();
   const active = features.find((feature) => feature.id === activeFeature)!;
+
+  // The lattice world reacts to whichever demo is running.
+  useEffect(() => {
+    setFocus(`lab:${activeFeature}`);
+    return () => setFocus(null);
+  }, [activeFeature, setFocus]);
 
   return (
     <div className="lab-experience">

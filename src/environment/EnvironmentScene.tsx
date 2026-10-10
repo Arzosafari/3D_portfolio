@@ -88,12 +88,12 @@ function EnvironmentLighting({ accent, bootRef, activityRef }: {
   });
   return (
     <>
-      <ambientLight intensity={.17} color="#abb8d2" />
-      <hemisphereLight intensity={.3} color="#91a5dd" groundColor="#080b10" />
-      <spotLight ref={keyLight} position={[-5.5, 7, 4]} angle={.55} penumbra={.88} distance={40} intensity={0} color="#f1efe9" />
-      <pointLight ref={fillLight} position={[5.2, 1.4, -8]} distance={24} decay={2} intensity={0} color="#627bd5" />
+      <ambientLight intensity={.17} color="#B9CBE4" />
+      <hemisphereLight intensity={.3} color="#C4D6F0" groundColor="#07152F" />
+      <spotLight ref={keyLight} position={[-5.5, 7, 4]} angle={.55} penumbra={.88} distance={40} intensity={0} color="#F2F6FC" />
+      <pointLight ref={fillLight} position={[5.2, 1.4, -8]} distance={24} decay={2} intensity={0} color="#3E6DB5" />
       <pointLight ref={cursorLight} position={[0, 1, 2]} distance={12} decay={2} intensity={0} color={accent} />
-      <directionalLight position={[0, 4, -11]} intensity={.42} color="#a7b8f1" />
+      <directionalLight position={[0, 4, -11]} intensity={.42} color="#8CB8F5" />
     </>
   );
 }
@@ -107,21 +107,21 @@ function InformationPlane({ position, rotation, accent, reverse = false, reduced
     <Float speed={reducedMotion ? 0 : .2} rotationIntensity={reducedMotion ? 0 : .009} floatIntensity={reducedMotion ? 0 : .027}>
       <group position={position} rotation={rotation}>
         <RoundedBox args={[1.72, 2.25, .065]} radius={.045} smoothness={3}>
-          <meshPhysicalMaterial color="#364258" metalness={.3} roughness={.2} transmission={.32} thickness={.12} transparent opacity={.47} clearcoat={.86} side={THREE.DoubleSide} />
-          <Edges color={reverse ? '#8295e5' : '#becaf0'} threshold={15} />
+          <meshPhysicalMaterial color="#1C3A63" metalness={.3} roughness={.2} transmission={.32} thickness={.12} transparent opacity={.47} clearcoat={.86} side={THREE.DoubleSide} />
+          <Edges color={reverse ? '#8CB8F5' : '#DCE4EF'} threshold={15} />
         </RoundedBox>
         <mesh position={[-.46, .72, .046]}>
           <boxGeometry args={[.48, .024, .008]} />
           <meshBasicMaterial ref={accentBar} color={accent} transparent opacity={.82} />
         </mesh>
-        <mesh position={[-.44, .51, .047]}><boxGeometry args={[.58, .012, .008]} /><meshBasicMaterial color="#d7deec" transparent opacity={.31} /></mesh>
+        <mesh position={[-.44, .51, .047]}><boxGeometry args={[.58, .012, .008]} /><meshBasicMaterial color="#DCE4EF" transparent opacity={.31} /></mesh>
         {[0, 1, 2].map((line) => (
           <mesh key={line} position={[-.08, .08 - line * .29, .048]}>
             <boxGeometry args={[1.08 - line * .12, .012, .008]} />
-            <meshBasicMaterial color="#dce2ee" transparent opacity={.25 - line * .02} />
+            <meshBasicMaterial color="#DCE4EF" transparent opacity={.25 - line * .02} />
           </mesh>
         ))}
-        <mesh position={[.45, -.69, .049]}><boxGeometry args={[.4, .017, .009]} /><meshBasicMaterial color="#9eacd2" transparent opacity={.46} /></mesh>
+        <mesh position={[.45, -.69, .049]}><boxGeometry args={[.4, .017, .009]} /><meshBasicMaterial color="#AFC2DC" transparent opacity={.46} /></mesh>
       </group>
     </Float>
   );
@@ -210,13 +210,13 @@ function ScenePlatforms({ accent, reducedMotion }: { accent: THREE.Color; reduce
     <group>
       <Float speed={reducedMotion ? 0 : .09} rotationIntensity={reducedMotion ? 0 : .005} floatIntensity={reducedMotion ? 0 : .015}>
         <group position={[-3.25, -2.55, -4.1]} rotation={[0, .06, 0]}>
-          <RoundedBox args={[2.55, .19, 2.85]} radius={.05} smoothness={3}><meshPhysicalMaterial color="#20293a" metalness={.67} roughness={.36} clearcoat={.3} /></RoundedBox>
+          <RoundedBox args={[2.55, .19, 2.85]} radius={.05} smoothness={3}><meshPhysicalMaterial color="#122C4E" metalness={.67} roughness={.36} clearcoat={.3} /></RoundedBox>
           <mesh position={[0, .105, -.7]}><boxGeometry args={[1.4, .012, .015]} /><meshBasicMaterial ref={(material) => { guideLines.current[0] = material; }} color={accent} transparent opacity={.34} /></mesh>
         </group>
       </Float>
       <Float speed={reducedMotion ? 0 : .09} rotationIntensity={reducedMotion ? 0 : .005} floatIntensity={reducedMotion ? 0 : .014}>
         <group position={[3.24, -2.47, -10.6]} rotation={[0, -.07, 0]}>
-          <RoundedBox args={[2.3, .19, 2.45]} radius={.05} smoothness={3}><meshPhysicalMaterial color="#20293a" metalness={.67} roughness={.36} clearcoat={.3} /></RoundedBox>
+          <RoundedBox args={[2.3, .19, 2.45]} radius={.05} smoothness={3}><meshPhysicalMaterial color="#122C4E" metalness={.67} roughness={.36} clearcoat={.3} /></RoundedBox>
           <mesh position={[0, .105, .52]}><boxGeometry args={[1.2, .012, .015]} /><meshBasicMaterial ref={(material) => { guideLines.current[1] = material; }} color={accent} transparent opacity={.31} /></mesh>
         </group>
       </Float>
@@ -272,17 +272,17 @@ export default function EnvironmentScene() {
   const activity = useRef(0);
   const bootStartedAt = useRef<number | null>(null);
   const boot = useRef(0);
-  const accent = useRef(new THREE.Color('#7189eb'));
-  const architectureMaterial = useMemo(() => new THREE.MeshPhysicalMaterial({ color: '#293447', metalness: .76, roughness: .32, clearcoat: .54, clearcoatRoughness: .3, emissive: '#10192d', emissiveIntensity: .1 }), []);
-  const detailMaterial = useMemo(() => new THREE.MeshBasicMaterial({ color: '#7189eb', transparent: true, opacity: .14 }), []);
-  const floorMaterial = useMemo(() => new THREE.MeshPhysicalMaterial({ color: '#0d121b', metalness: .28, roughness: .59, clearcoat: .18 }), []);
+  const accent = useRef(new THREE.Color('#8CB8F5'));
+  const architectureMaterial = useMemo(() => new THREE.MeshPhysicalMaterial({ color: '#274369', metalness: .76, roughness: .32, clearcoat: .54, clearcoatRoughness: .3, emissive: '#0C2140', emissiveIntensity: .1 }), []);
+  const detailMaterial = useMemo(() => new THREE.MeshBasicMaterial({ color: '#8CB8F5', transparent: true, opacity: .14 }), []);
+  const floorMaterial = useMemo(() => new THREE.MeshPhysicalMaterial({ color: '#0A1E3C', metalness: .28, roughness: .59, clearcoat: .18 }), []);
   const family = profile.industry?.toLowerCase() ?? '';
-  const architectureTint = useMemo(() => new THREE.Color(family.includes('fashion') ? '#333447' : family.includes('health') ? '#263943' : '#293447'), [family]);
+  const architectureTint = useMemo(() => new THREE.Color(family.includes('fashion') ? '#2C4A72' : family.includes('health') ? '#1F4257' : '#274369'), [family]);
   const goal = profile.goal?.toLowerCase() ?? '';
   const style = profile.style?.toLowerCase() ?? '';
-  const industryAccent = family.includes('fashion') ? '#b6a3dc' : family.includes('health') ? '#7da9bc' : family.includes('restaurant') ? '#c19c7e' : family.includes('technology') ? '#91a6f5' : family.includes('professional') ? '#9daac2' : '#7189eb';
-  const goalAccent = goal.includes('sales') ? '#879fff' : goal.includes('lead') ? '#87a4ce' : goal.includes('brand') ? '#b49ad2' : goal.includes('customer') ? '#8db7b0' : '#9da7de';
-  const styleAccent = style.includes('premium') ? '#c1aa92' : style.includes('minimal') ? '#9eafc5' : style.includes('interactive') ? '#8ea3ff' : style.includes('immersive') ? '#9d9ef0' : '#8498ec';
+  const industryAccent = family.includes('fashion') ? '#A7C4EA' : family.includes('health') ? '#8FC7E8' : family.includes('restaurant') ? '#D9C4A9' : family.includes('technology') ? '#8CB8F5' : family.includes('professional') ? '#B9C6DA' : '#8CB8F5';
+  const goalAccent = goal.includes('sales') ? '#8CB8F5' : goal.includes('lead') ? '#9FB6D8' : goal.includes('brand') ? '#A9BEE4' : goal.includes('customer') ? '#93C4DE' : '#A6BEE8';
+  const styleAccent = style.includes('premium') ? '#D8C9B4' : style.includes('minimal') ? '#B9C6DA' : style.includes('interactive') ? '#8CB8F5' : style.includes('immersive') ? '#9CC0F2' : '#8CB8F5';
   const targetAccent = useMemo(() => {
     const blended = new THREE.Color(industryAccent);
     if (goal) blended.lerp(new THREE.Color(goalAccent), .12);
@@ -363,7 +363,7 @@ export default function EnvironmentScene() {
 
   return (
     <>
-      <fogExp2 attach="fog" args={['#080b11', .018]} />
+      <fogExp2 attach="fog" args={['#07152F', .018]} />
       <EnvironmentCamera />
       <EnvironmentLighting accent={accent.current} bootRef={boot} activityRef={activity} />
       <pointLight ref={backlight} position={[0, 2.2, -12]} distance={22} decay={2} intensity={.18} color={accent.current} />

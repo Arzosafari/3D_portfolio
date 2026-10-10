@@ -1,51 +1,13 @@
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
 import { useLanguage } from '../contexts/LanguageContext';
-
-const teamMembers = {
-  en: [
-    {
-      name: 'Your Name',
-      role: 'Founder & Creative Director',
-      bio: 'Creative technologist with expertise in AI, design systems, and digital experiences. Passionate about building products that make a difference.',
-      image: '👤',
-    },
-    {
-      name: 'Team Member',
-      role: 'AI Engineer',
-      bio: 'Specialist in machine learning and natural language processing. Building intelligent systems that understand and assist users.',
-      image: '👤',
-    },
-    {
-      name: 'Team Member',
-      role: 'UX Designer',
-      bio: 'Designer focused on creating intuitive and beautiful user experiences. Believes in the power of thoughtful design.',
-      image: '👤',
-    },
-  ],
-  fa: [
-    {
-      name: 'نام شما',
-      role: 'بنیان‌گذار و مدیر خلاق',
-      bio: 'تکنولوژیست خلاق با تخصص در هوش مصنوعی، سیستم‌های طراحی و تجربیات دیجیتال. شیفته ساخت محصولاتی که تفاوت ایجاد می‌کنند.',
-      image: '👤',
-    },
-    {
-      name: 'عضو تیم',
-      role: 'مهندس هوش مصنوعی',
-      bio: 'متخصص در یادگیری ماشین و پردازش زبان طبیعی. ساخت سیستم‌های هوشمند که کاربران را درک و کمک می‌کنند.',
-      image: '👤',
-    },
-    {
-      name: 'عضو تیم',
-      role: 'طراح تجربه کاربری',
-      bio: 'طراح متمرکز بر ساخت تجربیات کاربری شهودی و زیبا. باور به قدرت طراحی دلسوزانه.',
-      image: '👤',
-    },
-  ],
-};
+import { useEnvironment } from '../environment/EnvironmentProvider';
+import { teamMembers } from '../data/team';
 
 export default function OurTeamPage() {
   const { language } = useLanguage();
+  const { setFocus } = useEnvironment();
 
   const content = {
     en: {
@@ -54,6 +16,7 @@ export default function OurTeamPage() {
       description: "We're a passionate team of designers, developers, and AI specialists who believe in the power of thoughtful technology.",
       cta: "Want to join our team? We're always looking for talented individuals who share our passion.",
       ctaButton: 'Get in touch',
+      studioNote: 'THE ATELIER / DESIGN · ENGINEERING · INTELLIGENCE',
     },
     fa: {
       index: '08 / تیم ما',
@@ -61,14 +24,17 @@ export default function OurTeamPage() {
       description: 'ما یک تیم پرشور از طراحان، توسعه‌دهندگان و متخصصان هوش مصنوعی هستیم که به قدرت تکنولوژی دلسوزانه باور داریم.',
       cta: 'می‌خواهید به تیم ما بپیوندید؟ ما همیشه به دنبال افراد با استعداد هستیم که اشتیاق ما را به اشتراک می‌گذارند.',
       ctaButton: 'تماس بگیرید',
+      studioNote: 'کارگاه / طراحی · مهندسی · هوشمندی',
     },
   };
 
   const t = content[language];
   const members = teamMembers[language];
 
+  useEffect(() => () => setFocus(null), [setFocus]);
+
   return (
-    <section className="section section-shell about-section" id="our-team" data-environment="about" aria-labelledby="our-team-title">
+    <section className="section section-shell team-section" id="our-team" data-environment="team" aria-labelledby="our-team-title">
       <div className="page-container">
         <div className="section-heading section-heading--split team-heading">
           <div className="section-heading-left">
@@ -78,22 +44,34 @@ export default function OurTeamPage() {
           <Reveal immediate delay={100} className="section-heading-right"><p>{t.description}</p></Reveal>
         </div>
 
+        <p className="team-studio-note" aria-hidden="true">{t.studioNote}</p>
+
         <Reveal className="team-grid" immediate delay={120}>
-          {members.map((member, index) => (
-            <div key={index} className="team-member-card">
-              <div className="team-member-image">{member.image}</div>
-              <div className="team-member-info">
-                <h3>{member.name}</h3>
-                <p className="team-member-role">{member.role}</p>
-                <p className="team-member-bio">{member.bio}</p>
-              </div>
-            </div>
-          ))}
+          <div className="team-grid__inner" onMouseLeave={() => setFocus(null)}>
+            {members.map((member, index) => (
+              <article
+                key={index}
+                className="team-member-card"
+                onMouseEnter={() => setFocus(`team:${index}`)}
+                onFocus={() => setFocus(`team:${index}`)}
+                tabIndex={0}
+                aria-label={`${member.name} — ${member.role}`}
+              >
+                <div className="team-member-image" aria-hidden="true">{member.image}</div>
+                <div className="team-member-info">
+                  <h3>{member.name}</h3>
+                  <p className="team-member-role">{member.role}</p>
+                  <p className="team-member-bio">{member.bio}</p>
+                </div>
+                <span className="team-member-index" aria-hidden="true">0{index + 1} / 0{members.length}</span>
+              </article>
+            ))}
+          </div>
         </Reveal>
 
         <Reveal className="team-cta" immediate delay={150}>
           <p>{t.cta}</p>
-          <a href="/contact" className="button button--acid">{t.ctaButton} <span aria-hidden="true">↗</span></a>
+          <Link to="/contact" className="button button--acid">{t.ctaButton} <span aria-hidden="true">↗</span></Link>
         </Reveal>
       </div>
     </section>

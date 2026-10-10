@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import BrandSymbol from './BrandSymbol';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -49,7 +49,16 @@ export default function Navigation() {
         </Link>
 
         <nav className="desktop-nav" aria-label="Main navigation">
-          {links.map((link) => <Link key={link.href} to={link.href}>{language === 'en' ? link.label : link.labelFa}</Link>)}
+          {links.map((link) => (
+            <NavLink key={link.href} to={link.href} end={link.href === '/'}>
+              {({ isActive }) => (
+                <>
+                  <span className="nav-link__label">{language === 'en' ? link.label : link.labelFa}</span>
+                  {isActive && <span className="nav-link__current" aria-hidden="true" />}
+                </>
+              )}
+            </NavLink>
+          ))}
         </nav>
 
         <div className="nav-actions">
@@ -77,9 +86,22 @@ export default function Navigation() {
             {language === 'en' ? 'FA' : 'EN'}
           </button>
           {links.map((link, index) => (
-            <Link key={link.href} to={link.href} onClick={closeMenu} style={{ '--item-index': index } as React.CSSProperties} tabIndex={menuOpen ? 0 : -1}>
-              <span>0{index + 1}</span>{language === 'en' ? link.label : link.labelFa}<span aria-hidden="true">↗</span>
-            </Link>
+            <NavLink
+              key={link.href}
+              to={link.href}
+              end={link.href === '/'}
+              onClick={closeMenu}
+              style={{ '--item-index': index } as React.CSSProperties}
+              tabIndex={menuOpen ? 0 : -1}
+            >
+              {({ isActive }) => (
+                <>
+                  <span>0{index + 1}</span>
+                  <span className={isActive ? 'mobile-nav__label mobile-nav__label--current' : 'mobile-nav__label'}>{language === 'en' ? link.label : link.labelFa}</span>
+                  <span aria-hidden="true">{isActive ? '●' : '↗'}</span>
+                </>
+              )}
+            </NavLink>
           ))}
           <Link className="mobile-nav-cta" to="/contact" onClick={closeMenu} tabIndex={menuOpen ? 0 : -1}>{language === 'en' ? 'Start a project' : 'شروع پروژه'} <span aria-hidden="true">↗</span></Link>
         </nav>

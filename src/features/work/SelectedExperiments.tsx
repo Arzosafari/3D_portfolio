@@ -1,44 +1,13 @@
 import { useEffect, useState } from 'react';
+import { projects, type ProjectConcept } from '../../data/projects';
+import { useEnvironment } from '../../environment/EnvironmentProvider';
 
-interface ProjectConcept {
-  number: string;
-  title: string;
-  summary: string;
-  discipline: string;
-  art: 'fashion' | 'health' | 'commerce';
-  premise: string;
-  features: string[];
-}
-
-const projects: ProjectConcept[] = [
-  {
-    number: '01',
-    title: 'AI Fashion Experience',
-    summary: 'A more personal way to find your point of view.',
-    discipline: 'AI COMMERCE · EDITORIAL',
-    art: 'fashion',
-    premise: 'A considered storefront concept for a new independent label—built around discovery, not endless scrolling.',
-    features: ['Editorial collection stories', 'Conversational styling assistant', 'Preference-led product discovery'],
-  },
-  {
-    number: '02',
-    title: 'Intelligent Health Platform',
-    summary: 'A calmer, clearer first step into care.',
-    discipline: 'HEALTH · HUMAN-CENTERED AI',
-    art: 'health',
-    premise: 'A digital front door concept that turns complicated healthcare information into a clear and reassuring next step.',
-    features: ['Plain-language care navigation', 'Accessible appointment journeys', 'Careful assistant with human hand-off'],
-  },
-  {
-    number: '03',
-    title: 'Smart Commerce',
-    summary: 'A storefront that learns what useful means.',
-    discipline: 'COMMERCE · PERSONALIZATION',
-    art: 'commerce',
-    premise: 'A commerce experiment for considered objects, where context and taste help the right product surface naturally.',
-    features: ['Adaptive product selection', 'Contextual recommendation layer', 'Fast, mobile-first checkout journey'],
-  },
-];
+/**
+ * The Work exhibition's accessible HTML layer: every real concept project as
+ * an interactive card, opening a detail dialog with its full information.
+ * Hover/focus/open states are mirrored into the 3D exhibition through the
+ * environment focus channel, so the installations and the grid stay in sync.
+ */
 
 function ProjectArtwork({ art }: { art: ProjectConcept['art'] }) {
   if (art === 'fashion') {
@@ -82,6 +51,8 @@ function ProjectArtwork({ art }: { art: ProjectConcept['art'] }) {
 
 export default function SelectedExperiments() {
   const [activeProject, setActiveProject] = useState<ProjectConcept | null>(null);
+  const { setFocus } = useEnvironment();
+  const activeIndex = activeProject ? projects.findIndex((project) => project.number === activeProject.number) : -1;
 
   useEffect(() => {
     if (!activeProject) return;
@@ -92,11 +63,26 @@ export default function SelectedExperiments() {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [activeProject]);
 
+  // Keep the 3D exhibition pointed at whatever the visitor is looking at.
+  useEffect(() => () => setFocus(null), [setFocus]);
+
+  const focusInstallation = (index: number) => setFocus(`work:${index}`);
+
   return (
     <>
-      <div className="project-grid">
-        {projects.map((project) => (
-          <button className="project-card" type="button" key={project.number} onClick={() => setActiveProject(project)} aria-haspopup="dialog" aria-label={`Explore concept: ${project.title}`}>
+      <div className="project-grid" onMouseLeave={() => { if (activeIndex === -1) setFocus(null); }}>
+        {projects.map((project, index) => (
+          <button
+            className={`project-card ${activeIndex === index ? 'project-card--active' : ''}`}
+            type="button"
+            key={project.number}
+            onClick={() => { setActiveProject(project); focusInstallation(index); }}
+            onMouseEnter={() => focusInstallation(index)}
+            onFocus={() => focusInstallation(index)}
+            onMouseLeave={() => { if (activeIndex === -1) setFocus(null); }}
+            aria-haspopup="dialog"
+            aria-label={`Explore concept: ${project.title}`}
+          >
             <div className="project-card__art"><ProjectArtwork art={project.art} /><span className="project-open-indicator" aria-hidden="true">↗</span></div>
             <div className="project-card__meta"><span>CONCEPT / EXPERIMENT</span><span>{project.number} <i>—</i> 03</span></div>
             <div className="project-card__title"><h3>{project.title}</h3><span aria-hidden="true">↗</span></div>
@@ -107,9 +93,9 @@ export default function SelectedExperiments() {
       </div>
 
       {activeProject && (
-        <div className="concept-modal-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setActiveProject(null); }}>
+        <div className="concept-modal-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) { setActiveProject(null); setFocus(null); } }}>
           <section className="concept-modal" role="dialog" aria-modal="true" aria-labelledby="concept-modal-title">
-            <div className="concept-modal__header"><span>CONCEPT / EXPERIMENT <i>·</i> {activeProject.number}</span><button type="button" onClick={() => setActiveProject(null)} aria-label="Close concept details">×</button></div>
+            <div className="concept-modal__header"><span>CONCEPT / EXPERIMENT <i>·</i> {activeProject.number}</span><button type="button" onClick={() => { setActiveProject(null); setFocus(null); }} aria-label="Close concept details">×</button></div>
             <div className="concept-modal__content">
               <div className="concept-modal__art"><ProjectArtwork art={activeProject.art} /></div>
               <div className="concept-modal__copy"><span className="eyebrow eyebrow--small">{activeProject.discipline}</span><h2 id="concept-modal-title">{activeProject.title}</h2><p>{activeProject.premise}</p><span className="concept-feature-heading">EXPERIENCE PILLARS</span><ul>{activeProject.features.map((feature) => <li key={feature}><i>↗</i>{feature}</li>)}</ul><p className="concept-disclaimer">A self-initiated portfolio experiment. Created to explore how thoughtful design and AI can work together.</p></div>

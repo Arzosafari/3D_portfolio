@@ -1,5 +1,5 @@
-import { lazy, Suspense, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -14,15 +14,14 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import { EnvironmentProvider } from './environment/EnvironmentProvider';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
+import SceneHost from './environment/SceneHost';
 import AdminPanel from './admin/AdminPanel';
 
-const EnvironmentStage = lazy(() => import('./environment/EnvironmentStage'));
-
-function AdminLayout({ children }) {
+function AdminLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
-function MainLayout({ children }) {
+function MainLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="site-content">
       <Navigation />
@@ -32,12 +31,20 @@ function MainLayout({ children }) {
   );
 }
 
+/** Every route starts at the top of its own world; browser history is untouched. */
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
+  }, [pathname]);
+  return null;
+}
+
 function AppContent() {
   return (
     <>
-      <Suspense fallback={<div className="environment-stage environment-stage--loading" aria-hidden="true"><div className="environment-vignette" /></div>}>
-        <EnvironmentStage />
-      </Suspense>
+      <ScrollToTop />
+      <SceneHost />
       <Routes>
         <Route path="/admin" element={<AdminLayout><AdminPanel /></AdminLayout>} />
         <Route path="/" element={<MainLayout><Home /></MainLayout>} />

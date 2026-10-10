@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-const steps = [
+export const steps = [
   { number: '01', title: 'Discover', description: 'We get close to your business, your people, and the moment that matters most.', note: 'LISTEN FIRST / FIND THE SIGNAL' },
   { number: '02', title: 'Design', description: 'We shape a distinctive visual and interaction system around a clear product idea.', note: 'MAKE IT MEAN SOMETHING' },
   { number: '03', title: 'Integrate', description: 'We build in the right AI, data, and product logic—with useful boundaries and human care.', note: 'INTELLIGENCE, WITH INTENTION' },

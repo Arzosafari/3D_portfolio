@@ -1,6 +1,6 @@
-# NOVA AI STUDIO
+# NOVA AI STUDIO — Immersive 3D Portfolio
 
-A responsive creative-technology studio website built around one persistent architectural 3D environment. The dark, editorial experience carries through every section instead of ending at the hero; a custom corridor of metal vaults, glass information planes, floor wayfinding, and restrained data paths shifts with scrolling, assistant activity, and a visitor's discovery profile.
+A responsive creative-technology studio website built as **one connected 3D universe of distinct page worlds**, in a white-and-navy design system. Every route keeps its own page, content and behavior; behind each one renders a purpose-built WebGL environment — never the same scene with different labels.
 
 ## Run locally
 
@@ -8,10 +8,8 @@ Requirements: Node.js 18+ and npm.
 
 ```bash
 npm install
-npm run dev
+npm run dev        # Vite dev server (prints a local URL, usually http://localhost:5173)
 ```
-
-Vite prints a local URL (usually `http://localhost:5173`). The experience uses no API key, account, external image, font, HDRI, or paid service. Chat and discovery use a local mock AI provider by default and work offline.
 
 For a production build:
 
@@ -20,62 +18,76 @@ npm run build
 npm run preview
 ```
 
-Optional provider settings are documented in `.env.example`. The default provider is the local mock.
+Checks:
 
-## What's interactive
+```bash
+npx tsc -b         # strict TypeScript pass
+npm run smoke      # jsdom render test of every page, the scene host and the route→world map
+```
 
-- A single fixed Canvas stays behind the whole page as the shared environment. Scroll carries the camera through the architectural sequence; pointer movement influences the camera and a soft light with eased response.
-- The environment reacts to the active section and to idle, thinking, responding, discovery, and success states. The assistant's request lifecycle drives visible changes in lighting, route intensity, and data pulses.
-- The discovery flow updates the environment as each answer is chosen. Industry, goal, and visual direction subtly influence accent color, architectural proportion, and panel arrangement; the generated recommendation holds a distinct success state.
-- Slow scene boot reveal without loader copy, warm-white editorial typography, a near-black palette, and restrained blue-violet accents.
-- Responsive navigation, expandable capabilities, a four-step process, a multi-turn business assistant with starter prompts/retry/reset, a three-step project discovery flow, four working AI Lab demos, three interactive selected concept experiments, about/contact/footer.
-- Portfolio experiments are explicitly identified as self-initiated concepts, not commissioned client work.
+The experience uses no API key, account, external image, HDRI, or paid service. All 3D textures (interface wireframes, project artwork, monograms, grids, glows) are drawn procedurally at runtime. Chat and discovery use a local mock AI provider by default and work offline. Optional provider settings are documented in `.env.example`.
 
-## Project structure
+## Pages & their 3D worlds
+
+| Route | Page | World (concept) |
+| --- | --- | --- |
+| `/` | Home | **Meridian Atrium** — a silver-ribbed architectural corridor the camera flies through as you scroll: entry → work wall → capability monoliths → intelligence core → contact portal |
+| `/work` | Work | **The Exhibition** — each real concept project is a framed installation over a plinth with a subject-specific motif; hovering/opening a card flies the camera to it |
+| `/capabilities` | Capabilities | **The System** — four monoliths crowned by discipline emblems, tied by light beams to a central hub; selecting a capability moves the camera to that node |
+| `/ai-lab` | AI Lab | **The Lattice** — a computational node field around a reasoning core; the four working demos drive data-flow behavior (converge / expand / orbit / sweep) |
+| `/our-team` | Our Team | **The Atelier** — a warm studio hall with floating portrait installations (monograms from real names until photography exists) |
+| `/about` | About | **Strata** — four luminous architectural layers; scrolling lifts the camera through the narrative |
+| `/contact` | Contact | **The Portal** — a minimal luminous gate; the camera approaches as you scroll toward the real contact actions |
+| `/assistant`, `/discovery`, `/process` | Working tools | **The Corridor** — the original persistent vault corridor, reacting to the AI request lifecycle and the discovery profile |
+| `/admin` | Admin panel | No scene (functional CRUD panel, unchanged) |
+
+## Architecture
 
 ```text
 src/
-├── App.tsx                         # Page content, persistent Canvas, section mapping
-├── main.tsx                        # React/Vite entry
-├── styles.css                      # Layout, dark editorial theme, responsive and reduced-motion styles
+├── App.tsx                         # Routes (unchanged URLs), layouts, scroll restoration
+├── main.tsx                        # Entry + self-hosted fonts (Space Grotesk, Inter variable)
+├── styles.css                      # White-and-navy design system, all component styles
+├── data/                           # Single source of truth shared by pages and scenes
+│   ├── projects.ts  capabilities.ts  labFeatures.ts  team.ts
 ├── environment/
-│   ├── EnvironmentProvider.tsx     # Active section, scroll/pointer refs, AI state, discovery profile
-│   ├── EnvironmentStage.tsx        # Lazy Canvas stage and mobile rendering budget
-│   └── EnvironmentScene.tsx        # One persistent architectural R3F scene
-├── components/
-│   ├── BrandSymbol.tsx
-│   ├── Capabilities.tsx
-│   ├── HowWeBuild.tsx
-│   ├── Navigation.tsx
-│   ├── Reveal.tsx                  # IntersectionObserver reveal
-│   └── ...                         # Reusable concept presentation components
-├── features/
-│   ├── assistant/ChatAssistant.tsx
-│   ├── discovery/DiscoveryFlow.tsx
-│   ├── lab/ExperienceLab.tsx
-│   └── work/SelectedExperiments.tsx
-└── services/
-    └── aiService.ts                # Offline mock, provider interface, same-origin HTTP adapter
+│   ├── EnvironmentProvider.tsx     # Scroll/pointer refs, active section, AI state, profile, focus channel
+│   ├── SceneHost.tsx               # Route-aware host: one lazy canvas at a time, transition veil, WebGL fallback
+│   ├── SceneCanvas.tsx             # Shared render surface (dpr caps, mobile quality budget)
+│   ├── SceneLighting.tsx           # Shared navy lighting rig + pointer-follow accent light
+│   ├── CameraRig.tsx               # ZoneCamera (scroll/focus-driven), PointerDrift, boot reveal
+│   ├── textures.ts                 # Procedural canvas textures (glow, grid, interfaces, project art, monograms)
+│   ├── tokens3d.ts                 # 3D palette, fog presets, motion timing
+│   ├── EnvironmentScene.tsx        # Corridor world (assistant/discovery/process)
+│   └── scenes/                     # One world per page + shared sceneParts (beams, floors, dust, pools)
+├── components/  features/  pages/  # Existing site structure, preserved content
+└── services/aiService.ts           # Offline mock + provider interface + same-origin HTTP adapter
 ```
+
+**Design tokens.** Deep midnight navy `#07152F`, dark blue `#0B1F3A`, rich navy `#102B50`, pure white, off-white `#F5F7FB`, cool silver `#DCE4EF`, and a single restrained icy-blue highlight `#8CB8F5` for lighting, active states, and focal points. Navy carries the cinematic environments; white/off-white carries readable content (typography, team cards, the project detail dialog, lab demo surfaces).
+
+**Focus channel.** Page UI and its world stay in sync through `setFocus()` on the environment provider (`work:0`, `cap:2`, `lab:search`, `team:1`…). Scenes read `focusRef` inside `useFrame`, so hovering a card moves the camera without re-rendering the 3D tree.
+
+**Page transitions.** Navigating between routes paints a brief non-blocking veil sweep (pointer-events: none, skipped for reduced motion) while the new world fades in — continuity without ever delaying navigation. Browser back/forward, direct URLs and refresh all work: each route is a real page.
+
+## Performance & accessibility
+
+- Exactly **one WebGL canvas mounted at a time**; scene modules are route-split and lazy (per-scene chunks in `dist/`).
+- Pixel-ratio caps, disabled antialiasing, reduced geometry counts and simplified interactions on narrow viewports; adaptive camera framing for portrait aspect ratios.
+- `prefers-reduced-motion`: cameras hold a single composed frame, boot reveals complete instantly, CSS animation/transition durations collapse, the transition veil is skipped.
+- No WebGL: a layered CSS navy environment replaces the canvas; all content remains fully readable.
+- All content is real HTML: semantic sections, keyboard-accessible navigation with visible focus and `aria-current` page state, dialog-based project details, labeled forms and controls. Nothing essential is hover-only or canvas-only.
+- EN/FA bilingual with full RTL support (unchanged language toggle in the nav).
 
 ## AI architecture / connecting a real model
 
-`src/services/aiService.ts` separates AI business logic from the React UI. It defines the `AiProvider` contract, a working local mock, and a same-origin `createHttpProvider()` adapter. The HTTP adapter expects:
+`src/services/aiService.ts` separates AI business logic from the React UI: an `AiProvider` contract, a working local mock, and a same-origin `createHttpProvider()` adapter expecting:
 
 - `POST /api/ai/chat` with `{ messages, input }`, returning `{ reply: string }`
 - `POST /api/ai/recommend` with `{ industry, goal, style }`, returning an `ExperienceRecommendation`
 
-To use the adapter after deploying those backend routes, set:
+To use the adapter after deploying those backend routes, set `VITE_AI_PROVIDER=http` and `VITE_AI_API_BASE=/api/ai`. Implement the routes server-side and **never put provider credentials in a `VITE_*` variable or frontend code.** With HTTP mode disabled, the assistant and recommendation flow remain fully usable offline.
 
-```env
-VITE_AI_PROVIDER=http
-VITE_AI_API_BASE=/api/ai
-```
+## Admin panel
 
-Implement the routes in a server or serverless function, validate inputs and outputs there, and call OpenAI or another provider from the server. **Never put provider credentials in a `VITE_*` variable or frontend code.** With HTTP mode disabled, the assistant and recommendation flow remain fully usable offline.
-
-## Environment and performance
-
-The environment is an original sequence of architectural vaults with glass information planes, floor paths, signal lines, and sparse markers. It uses no stock model or image asset and avoids a decorative hero object. A single shared scene persists behind entry, capabilities, assistant, discovery, process, AI Lab, concepts, about, and contact.
-
-The Canvas and WebGL scene are lazy-loaded, so the content renders while the scene initializes. Mobile uses a lower device-pixel ratio, disables antialiasing, and renders fewer/lower-detail vaults. The scene honors `prefers-reduced-motion` by holding the camera and structure still while retaining state and color feedback. Page content remains semantic, keyboard accessible, and readable over the environment; no external stylesheets, fonts, or imagery are required.
+See `ADMIN_PANEL_README.md`. The `/admin` route (Laravel-backed CRUD for projects and team members) is intentionally left as a purely functional tool — no scene is mounted there.
