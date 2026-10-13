@@ -2,5 +2,11 @@
   "previewPort": 3000,
   "healthPath": "/",
   "startCommand": "docker compose -f docker-compose.base44.yml up -d",
-  "secrets": []
+  "secrets": [
+    {
+      "name": "AI_API_KEY",
+      "description": "API key for the OpenAI-compatible provider that powers the AI Lab tools (assistant, fashion studio, research explainer, concept explorer). Any provider exposing POST {AI_BASE_URL}/chat/completions works; set AI_BASE_URL/AI_MODEL in .env.base44-defaults to match. Without it the tools show an honest \"not connected\" state instead of answers.",
+      "requiredAtBoot": false
+    }
+  ]
 }

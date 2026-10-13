@@ -2,9 +2,13 @@
 # Runs the cloned source with the project's own Vite dev server (live reload),
 # so edits in the repo appear immediately in the preview without a rebuild.
 #   Start: docker compose -f docker-compose.base44.yml up -d --build
-# The app is a frontend-only Vite/React SPA: no database or external service is
-# required (the AI provider defaults to the offline mock). Nothing else in the
-# repo's own docker-compose files is reused — this one is authoritative here.
+#
+# Two app services:
+#   web — the Vite/React SPA (port 3000). Also proxies /api to `api`.
+#   api — the AI Lab backend. Holds the provider credential server-side.
+# Nothing else in the repo's own compose/Dockerfiles is reused — this file is
+# authoritative here; the app's own Dockerfile bakes a production bundle and
+# would freeze the code.
 services:
   web:
     # Plain runtime base image: the app code comes from the bind mount below,
@@ -16,11 +20,16 @@ services:
     ports:
       - "3000:5173"
     environment:
-      # Vite dev server bind address (the project's `dev` script already passes
-      # --host 0.0.0.0; kept explicit for clarity).
       - HOST=0.0.0.0
+      # Frontend config: route the AI Lab tools through the same-origin /api
+      # proxy to the `api` service. All of these are public, non-secret values.
+      - VITE_AI_PROVIDER=http
+      - VITE_AI_API_BASE=/api/ai
+      - VITE_API_PROXY_TARGET=http://api:4000
       # Bare pass-through of the platform flag; no app behavior depends on it here.
       - BASE44_PREVIEW_MODE
+    depends_on:
+      - api
     # Dependencies live in the bind mount (node_modules is gitignored). Sync from
     # the lockfile when they are missing or the lockfile changed, then hand the
     # process over to the dev server so signals reach it.
@@ -42,4 +51,33 @@ services:
       timeout: 5s
       retries: 6
       start_period: 90s
+    restart: on-failure
+
+  api:
+    image: node:22
+    working_dir: /app
+    volumes:
+      # Only the backend is mounted — it has no dependencies to install.
+      - ./server:/app
+    # The API is reached through the web dev server's proxy, so it stays
+    # unexposed; host port 3000 is the single user-facing entry point.
+    expose:
+      - "4000"
+    env_file:
+      - ./.env.base44-defaults   # non-secret defaults (AI_BASE_URL, AI_MODEL)
+      - /run/base44/app.env      # platform secrets (AI_API_KEY) — always wins
+    environment:
+      - HOST=0.0.0.0
+      - PORT=4000
+      - BASE44_PREVIEW_MODE
+    # The service has no dependencies to install, so it starts immediately.
+    command: ["node", "index.mjs"]
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - node -e "fetch('http://localhost:4000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
     restart: on-failure

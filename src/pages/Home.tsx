@@ -3,7 +3,7 @@ import Reveal from '../components/Reveal';
 import { useLanguage } from '../contexts/LanguageContext';
 import { projects } from '../data/projects';
 import { capabilities } from '../data/capabilities';
-import { labFeatures } from '../data/labFeatures';
+import { labTools } from '../data/labFeatures';
 
 export default function Home() {
   const { language } = useLanguage();
@@ -176,7 +176,7 @@ export default function Home() {
             </div>
             <Reveal delay={160} className="home-ai-features">
               <ul>
-                {labFeatures.map((feature) => (
+                {labTools.map((feature) => (
                   <li key={feature.id}>
                     <Link to="/ai-lab">
                       <span>{feature.number} / 04</span>

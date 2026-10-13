@@ -1,0 +1,174 @@
+/* ============================================================================
+   AI Lab tools — the working panels inside the lab's light surface.
+   Shares the site's white-and-navy language: white cards, navy ink, one
+   restrained ice-blue accent. Scoped to .ailab-* so nothing else is affected.
+   ========================================================================== */
+
+.ailab-tool { display: flex; min-width: 0; width: 100%; flex-direction: column; gap: 16px; }
+
+.ailab-tool-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+.ailab-tool-head h3 { margin: 4px 0 0; color: #101c35; font-size: 19px; font-weight: 600; letter-spacing: -.02em; }
+.ailab-tool-kicker { color: #6f7d93; font-size: 9px; letter-spacing: .14em; }
+
+/* ---------------------------------------------------------------- chat tool */
+
+.ailab-chat-log {
+  display: flex; min-height: 240px; max-height: 380px; flex-direction: column; gap: 12px;
+  overflow-y: auto; padding: 16px; border: 1px solid #e0e4eb; border-radius: 6px; background: #fff;
+}
+.ailab-empty { display: grid; place-items: center; min-height: 180px; padding: 0 18px; text-align: center; }
+.ailab-empty p { margin: 0; max-width: 46ch; color: #6a7789; font-size: 13px; line-height: 1.6; }
+
+.ailab-turn { display: flex; flex-direction: column; gap: 5px; }
+.ailab-turn-role { color: #8591a2; font-size: 9px; letter-spacing: .11em; text-transform: uppercase; }
+.ailab-turn p { margin: 0; color: #1d2c46; font-size: 13.5px; line-height: 1.65; white-space: pre-wrap; }
+.ailab-turn--user { align-items: flex-end; text-align: right; }
+.ailab-turn--user p { padding: 9px 13px; border-radius: 6px; background: #eef2f8; color: #21324f; }
+.ailab-turn--assistant { padding-left: 13px; border-left: 2px solid #d8e4f8; }
+
+.ailab-chat-form { display: flex; gap: 9px; }
+.ailab-chat-form input {
+  flex: 1; min-width: 0; padding: 12px 14px; border: 1px solid #dbe1ea; border-radius: 5px;
+  background: #fff; color: #101c35; font-family: inherit; font-size: 13.5px;
+}
+.ailab-chat-form input:focus-visible, .ailab-form input:focus-visible, .ailab-form select:focus-visible,
+.ailab-form textarea:focus-visible, .ailab-followup input:focus-visible {
+  outline: 2px solid #5e93dc; outline-offset: 1px;
+}
+.ailab-chat-form input::placeholder, .ailab-form input::placeholder, .ailab-form textarea::placeholder { color: #9aa6b7; }
+
+.ailab-starters { display: flex; flex-wrap: wrap; gap: 7px; }
+.ailab-starters button {
+  padding: 7px 11px; border: 1px solid #dde3ec; border-radius: 99px; background: #fff;
+  color: #4a6285; font-family: inherit; font-size: 11.5px; cursor: pointer; transition: border-color .18s, color .18s, background .18s;
+}
+.ailab-starters button:hover:not(:disabled) { border-color: #aebef1; color: #2f4f86; background: #f6f9ff; }
+.ailab-starters button:disabled { opacity: .5; cursor: not-allowed; }
+
+.ailab-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.ailab-chips button {
+  padding: 7px 11px; border: 1px solid #dde3ec; border-radius: 4px; background: #fff;
+  color: #4a6285; font-family: inherit; font-size: 11.5px; cursor: pointer; transition: border-color .18s, color .18s;
+}
+.ailab-chips button:hover { border-color: #aebef1; color: #2f4f86; }
+.ailab-chips button.is-active { border-color: #5e93dc; background: #f2f7ff; color: #2f4f86; }
+
+/* ------------------------------------------------------------------ forms */
+
+.ailab-form { display: flex; flex-direction: column; gap: 14px; }
+.ailab-grid { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ailab-grid-wide { grid-column: 1 / -1; }
+.ailab-grid label, .ailab-field { display: flex; min-width: 0; flex-direction: column; gap: 6px; }
+.ailab-grid label > span, .ailab-field > span { color: #64738a; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+.ailab-grid label > span em, .ailab-field > span em { color: #9aa6b7; font-style: normal; letter-spacing: .04em; text-transform: none; }
+.ailab-field small { color: #8591a2; font-size: 11px; }
+
+.ailab-form input, .ailab-form select, .ailab-form textarea, .ailab-followup input {
+  width: 100%; padding: 10px 12px; border: 1px solid #dbe1ea; border-radius: 5px;
+  background: #fff; color: #101c35; font-family: inherit; font-size: 13px;
+}
+.ailab-form textarea { resize: vertical; line-height: 1.55; }
+.ailab-form select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, #7d8ba0 50%), linear-gradient(135deg, #7d8ba0 50%, transparent 50%); background-position: right 14px top 55%, right 9px top 55%; background-repeat: no-repeat; background-size: 5px 5px, 5px 5px; padding-right: 30px; }
+
+.ailab-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.ailab-count { color: #8591a2; font-size: 11px; }
+
+.ailab-primary {
+  display: inline-flex; align-items: center; gap: 7px; padding: 11px 20px; border: 0; border-radius: 4px;
+  background: #101c35; color: #fff; font-family: inherit; font-size: 12.5px; font-weight: 550; letter-spacing: .02em;
+  cursor: pointer; transition: background .2s;
+}
+.ailab-primary:hover:not(:disabled) { background: #1c3054; }
+.ailab-primary:disabled { background: #9aa6b7; cursor: not-allowed; }
+.ailab-primary span { font-size: 11px; }
+
+.ailab-ghost {
+  padding: 9px 14px; border: 1px solid #dbe1ea; border-radius: 4px; background: #fff;
+  color: #4a6285; font-family: inherit; font-size: 11.5px; cursor: pointer; transition: border-color .18s, color .18s;
+}
+.ailab-ghost:hover { border-color: #aebef1; color: #2f4f86; }
+
+.ailab-tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; border: 1px solid #e2e6ed; border-radius: 5px; background: #f4f6f9; }
+.ailab-tabs button {
+  flex: 1 1 auto; padding: 9px 12px; border: 0; border-radius: 3px; background: transparent;
+  color: #64738a; font-family: inherit; font-size: 12px; cursor: pointer; transition: background .18s, color .18s;
+}
+.ailab-tabs button.is-active { background: #fff; color: #16233d; box-shadow: 0 1px 3px rgba(16, 28, 53, .1); }
+
+/* -------------------------------------------------------- status + results */
+
+.ailab-loading, .ailab-error, .ailab-note {
+  display: flex; align-items: center; gap: 9px; margin: 0; font-size: 12.5px; line-height: 1.6;
+}
+.ailab-loading { color: #4a6285; }
+.ailab-error { padding: 11px 13px; border: 1px solid #e6c9c9; border-radius: 5px; background: #fdf5f5; color: #8a3d3d; }
+.ailab-error span { display: grid; width: 17px; height: 17px; flex-shrink: 0; place-items: center; border-radius: 50%; background: #c96a6a; color: #fff; font-size: 11px; font-weight: 700; }
+.ailab-note { color: #78869a; font-size: 11.5px; }
+
+.ailab-spinner {
+  width: 13px; height: 13px; flex-shrink: 0; border: 2px solid #d3dced; border-top-color: #5e93dc;
+  border-radius: 50%; animation: ailab-spin .7s linear infinite;
+}
+@keyframes ailab-spin { to { transform: rotate(360deg); } }
+
+.ailab-result { display: flex; flex-direction: column; gap: 16px; padding: 18px; border: 1px solid #dde3ec; border-radius: 6px; background: #fff; animation: ailab-in .35s ease both; }
+@keyframes ailab-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+.ailab-result-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; padding-bottom: 13px; border-bottom: 1px solid #eef1f5; }
+.ailab-result-head h4 { margin: 5px 0 0; color: #101c35; font-size: 18px; font-weight: 600; letter-spacing: -.02em; }
+.ailab-result-head p { margin: 6px 0 0; color: #64738a; font-size: 13px; line-height: 1.6; }
+.ailab-result-kicker { color: #5e93dc; font-size: 9px; letter-spacing: .13em; }
+
+.ailab-copy {
+  flex-shrink: 0; padding: 8px 13px; border: 1px solid #dbe1ea; border-radius: 4px; background: #fff;
+  color: #4a6285; font-family: inherit; font-size: 11px; cursor: pointer; transition: border-color .18s, color .18s;
+}
+.ailab-copy:hover { border-color: #aebef1; color: #2f4f86; }
+
+.ailab-pieces { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.ailab-pieces li { display: flex; gap: 12px; padding: 11px 13px; border: 1px solid #eaedf2; border-radius: 5px; background: #fafbfd; }
+.ailab-piece-index { color: #5e93dc; font-size: 10px; letter-spacing: .1em; padding-top: 2px; }
+.ailab-pieces strong { display: block; color: #16233d; font-size: 13.5px; font-weight: 570; }
+.ailab-piece-role { display: block; margin-top: 2px; color: #8591a2; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+.ailab-pieces p { margin: 5px 0 0; color: #64738a; font-size: 12.5px; line-height: 1.6; }
+
+.ailab-result-blocks { display: flex; flex-direction: column; gap: 14px; }
+.ailab-result-blocks > div > span { display: block; margin-bottom: 6px; color: #6f7d93; font-size: 9px; letter-spacing: .13em; }
+.ailab-result-blocks p { margin: 0; color: #26374f; font-size: 13px; line-height: 1.68; }
+.ailab-result-blocks ul, .ailab-result-blocks ol { margin: 0; padding-left: 18px; color: #26374f; font-size: 13px; line-height: 1.68; }
+.ailab-result-blocks li { margin-bottom: 5px; }
+
+.ailab-concepts { margin: 0; }
+.ailab-concepts > div { margin-bottom: 9px; }
+.ailab-concepts dt { color: #16233d; font-size: 12.5px; font-weight: 570; }
+.ailab-concepts dd { margin: 2px 0 0; color: #64738a; font-size: 12.5px; line-height: 1.6; }
+
+.ailab-feedback { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding-top: 13px; border-top: 1px solid #eef1f5; }
+.ailab-feedback > span { color: #6f7d93; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+.ailab-feedback button {
+  padding: 7px 13px; border: 1px solid #dbe1ea; border-radius: 99px; background: #fff;
+  color: #4a6285; font-family: inherit; font-size: 11.5px; cursor: pointer; transition: border-color .18s, color .18s, background .18s;
+}
+.ailab-feedback button:hover:not(:disabled) { border-color: #aebef1; color: #2f4f86; background: #f6f9ff; }
+.ailab-feedback button:disabled { opacity: .45; cursor: not-allowed; }
+
+.ailab-followup { display: flex; align-items: flex-end; gap: 10px; padding-top: 14px; border-top: 1px solid #eef1f5; }
+.ailab-followup .ailab-field { flex: 1; }
+
+/* ------------------------------------------------------- lab panel overrides */
+
+/* The tool panels are tall forms, not centred preview art. */
+.lab-preview-content--tool { min-height: 0; align-items: stretch; justify-content: flex-start; padding: 18px 14px 20px; }
+.preview-live--pending i, .preview-live--offline i { background: #c9a24a; }
+.preview-live--offline { color: #8a6d2f; }
+.preview-live--live i { background: #4caf7d; }
+
+@media (max-width: 900px) {
+  .ailab-grid { grid-template-columns: minmax(0, 1fr); }
+  .ailab-chat-log { max-height: 320px; }
+  .ailab-followup { flex-direction: column; align-items: stretch; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ailab-result, .ailab-spinner { animation: none; }
+}

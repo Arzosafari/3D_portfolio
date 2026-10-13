@@ -1,21 +1,58 @@
 /**
- * The AI Lab's real interactive concepts, shared by the lab UI and its
- * computational 3D environment. Each has a working demo on the page.
+ * The AI Lab's four working tools, shared by the lab UI and its 3D environment.
+ * Each one calls a real backend route (see server/index.mjs) — none of them is a
+ * scripted demo.
  */
 
-export type LabFeature = 'assistant' | 'recommendations' | 'personalization' | 'search';
+export type LabToolId = 'portfolio-assistant' | 'fashion-studio' | 'paper-explainer' | 'concept-explorer';
 
-export interface LabFeatureInfo {
-  id: LabFeature;
+/**
+ * How the Lattice scene should behave while a tool is open. The scene already
+ * knows these four flows (converge / expand / sweep / orbit), so the tools drive
+ * it without the scene needing to know about the tools themselves.
+ */
+export type LabSceneMode = 'assistant' | 'recommendations' | 'search' | 'personalization';
+
+export interface LabToolInfo {
+  id: LabToolId;
   number: string;
   title: string;
   description: string;
   glyph: string;
+  scene: LabSceneMode;
 }
 
-export const labFeatures: LabFeatureInfo[] = [
-  { id: 'assistant', number: '01', title: 'AI assistant', description: 'Useful answers, built around your brand.', glyph: '↗' },
-  { id: 'recommendations', number: '02', title: 'Smart recommendation', description: 'Help people find their next best choice.', glyph: '✳' },
-  { id: 'personalization', number: '03', title: 'Personalization', description: 'A relevant experience for every visitor.', glyph: '◉' },
-  { id: 'search', number: '04', title: 'Intelligent search', description: 'Understand the intent behind a question.', glyph: '⌕' },
+export const labTools: LabToolInfo[] = [
+  {
+    id: 'portfolio-assistant',
+    number: '01',
+    title: 'Portfolio assistant',
+    description: 'Ask about the research, projects and skills on this site.',
+    glyph: '↗',
+    scene: 'assistant',
+  },
+  {
+    id: 'fashion-studio',
+    number: '02',
+    title: 'Fashion intelligence studio',
+    description: 'Build an outfit from an occasion, weather and your own wardrobe.',
+    glyph: '✳',
+    scene: 'recommendations',
+  },
+  {
+    id: 'paper-explainer',
+    number: '03',
+    title: 'Research & paper explainer',
+    description: 'Break down a paper, an abstract or a research question.',
+    glyph: '◧',
+    scene: 'search',
+  },
+  {
+    id: 'concept-explorer',
+    number: '04',
+    title: 'AI concept explorer',
+    description: 'Learn any AI concept at the depth you choose.',
+    glyph: '◉',
+    scene: 'personalization',
+  },
 ];
