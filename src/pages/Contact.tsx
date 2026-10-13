@@ -11,26 +11,26 @@ export default function ContactPage() {
       title: <>Have an idea<br />worth <em>building?</em></>,
       description: "Let's turn it into an intelligent digital experience.",
       startProject: 'Start a project',
-      talkToAI: 'Talk to NOVA AI',
+      talkToAI: 'Talk to faratech_lab',
       aside: 'GOOD IDEAS START WITH A HELLO.',
       channelsHeading: 'DIRECT CHANNELS',
       emailLabel: 'Email the studio',
       socialLabel: 'Elsewhere',
       replyNote: 'Usually replied within one business day.',
-      assistantNote: 'Prefer to explore first? NOVA AI is a working prototype that helps you find a useful starting point.',
+      assistantNote: 'Prefer to explore first? faratech_lab is a working prototype that helps you find a useful starting point.',
     },
     fa: {
       eyebrow: 'چیز بعدی از اینجا شروع می‌شود',
       title: <>ایده‌ای دارید<br />ارزش <em>ساختن؟</em></>,
       description: 'بیایید آن را به یک تجربه دیجیتال هوشمند تبدیل کنیم.',
       startProject: 'شروع یک پروژه',
-      talkToAI: 'صحبت با NOVA AI',
+      talkToAI: 'صحبت با faratech_lab',
       aside: 'ایده‌های خوب با یک سلام شروع می‌شوند.',
       channelsHeading: 'راه‌های ارتباطی مستقیم',
       emailLabel: 'ایمیل به استودیو',
       socialLabel: 'جای دیگر',
       replyNote: 'معمولاً ظرف یک روز کاری پاسخ می‌دهیم.',
-      assistantNote: 'ترجیح می‌دهید اول کاوش کنید؟ نووا ای‌آی یک نمونه اولیه کاری است که به شما کمک می‌کند نقطه شروع مفیدی پیدا کنید.',
+      assistantNote: 'ترجیح می‌دهید اول کاوش کنید؟ faratech_lab یک نمونه اولیه کاری است که به شما کمک می‌کند نقطه شروع مفیدی پیدا کنید.',
     },
   };
 
@@ -46,11 +46,11 @@ export default function ContactPage() {
           </div>
           <Reveal immediate delay={100} className="section-heading-right"><p>{t.description}</p></Reveal>
         </div>
-        <Reveal className="contact-content" immediate delay={120}><div className="contact-actions"><a href="mailto:hello@nova.studio?subject=Let%27s%20build%20something" className="button button--acid">{t.startProject} <span aria-hidden="true">↗</span></a><Link to="/assistant" className="button button--quiet"><span className="button-play" aria-hidden="true">↗</span> {t.talkToAI}</Link></div></Reveal>
+        <Reveal className="contact-content" immediate delay={120}><div className="contact-actions"><a href="mailto:hello@faratechlab.com?subject=Let%27s%20build%20something" className="button button--acid">{t.startProject} <span aria-hidden="true">↗</span></a><Link to="/assistant" className="button button--quiet"><span className="button-play" aria-hidden="true">↗</span> {t.talkToAI}</Link></div></Reveal>
         <Reveal className="contact-channels" immediate delay={150}>
           <div className="contact-channel">
             <span className="contact-channel__label">{t.channelsHeading} / 01</span>
-            <a href="mailto:hello@nova.studio" className="contact-channel__value">{t.emailLabel}<strong>HELLO@NOVA.STUDIO ↗</strong></a>
+            <a href="mailto:hello@faratechlab.com" className="contact-channel__value">{t.emailLabel}<strong>HELLO@FARATECHLAB.COM ↗</strong></a>
             <small>{t.replyNote}</small>
           </div>
           <div className="contact-channel">
@@ -65,7 +65,7 @@ export default function ContactPage() {
             <small>{t.assistantNote}</small>
           </div>
         </Reveal>
-        <div className="contact-aside"><span>{t.aside}</span><a href="mailto:hello@nova.studio">HELLO@NOVA.STUDIO ↗</a></div>
+        <div className="contact-aside"><span>{t.aside}</span><a href="mailto:hello@faratechlab.com">HELLO@FARATECHLAB.COM ↗</a></div>
       </div>
     </section>
   );

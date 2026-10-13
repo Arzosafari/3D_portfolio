@@ -83,7 +83,7 @@ function createMockProvider(): AiProvider {
       }
 
       if (/hello|hi\b|hey\b|start|begin/i.test(lower) && userTurns <= 1) {
-        return 'Hi, I’m NOVA AI—your first-pass digital experience strategist. Tell me what you do and what you want the website to change for your business. I’ll help turn that into a useful starting point.';
+        return 'Hi, I’m faratech_lab—your first-pass digital experience strategist. Tell me what you do and what you want the website to change for your business. I’ll help turn that into a useful starting point.';
       }
 
       if (industry) {

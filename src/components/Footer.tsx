@@ -8,7 +8,7 @@ export default function Footer() {
   const content = {
     en: {
       location: 'DALLAS, TX · WORKING EVERYWHERE',
-      copyright: '© 2026 NOVA AI STUDIO · CONCEPT SITE / PORTFOLIO SERIES 01',
+      copyright: '© 2026 faratech_lab · CONCEPT SITE / PORTFOLIO SERIES 01',
       links: {
         work: 'Work',
         capabilities: 'Capabilities',
@@ -19,7 +19,7 @@ export default function Footer() {
     },
     fa: {
       location: 'دالاس، تگزاس · کار در همه جا',
-      copyright: '© 2026 NOVA AI STUDIO · سایت مفهومی / سری پرتفولیو 01',
+      copyright: '© 2026 faratech_lab · سایت مفهومی / سری پرتفولیو 01',
       links: {
         work: 'کارها',
         capabilities: 'قابلیت‌ها',
@@ -36,9 +36,9 @@ export default function Footer() {
     <footer className="site-footer" data-environment="contact">
       <div className="page-container">
         <div className="footer-top">
-          <Link className="brand-lockup footer-brand" to="/"><BrandSymbol /><span className="brand-wordmark">NOVA<span>AI STUDIO</span></span></Link>
+          <Link className="brand-lockup footer-brand" to="/"><BrandSymbol /><span className="brand-wordmark">faratech<span>_lab</span></span></Link>
           <p>AI × DESIGN × EXPERIENCE<br /><span>{t.location}</span></p>
-          <a className="footer-email" href="mailto:hello@nova.studio">HELLO@NOVA.STUDIO <span>↗</span></a>
+          <a className="footer-email" href="mailto:hello@faratechlab.com">HELLO@FARATECHLAB.COM <span>↗</span></a>
         </div>
         <div className="footer-bottom">
           <span>{t.copyright}</span>

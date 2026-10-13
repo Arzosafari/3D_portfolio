@@ -14,7 +14,7 @@ export default function AboutPage() {
       link: 'A little more about our approach',
       storyIndex: 'STRATUM 01 / WHO WE ARE',
       storyTitle: <>An independent studio for <em>intelligent</em> digital work.</>,
-      storyLead: 'NOVA AI STUDIO is an independent creative technology studio. We build modern websites, AI-powered web applications, interactive digital experiences, and custom web solutions — one considered system at a time.',
+      storyLead: 'faratech_lab is an independent creative technology studio. We build modern websites, AI-powered web applications, interactive digital experiences, and custom web solutions — one considered system at a time.',
       offeringsHeading: 'WHAT WE BUILD',
       offerings: [
         { title: 'Modern websites', note: 'Editorial, fast, built around a clear idea.' },
@@ -46,7 +46,7 @@ export default function AboutPage() {
       link: 'کمی بیشتر درباره رویکرد ما',
       storyIndex: 'لایه ۰۱ / ما که هستیم',
       storyTitle: <>یک استودیوی مستقل برای کار دیجیتال <em>هوشمند.</em></>,
-      storyLead: 'نووا ای‌آی استودیو یک استودیو تکنولوژی خلاق مستقل است. ما وب‌سایت‌های مدرن، اپلیکیشن‌های وب مبتنی بر هوش مصنوعی، تجربیات دیجیتال تعاملی و راه‌حل‌های سفارشی وب می‌سازیم — هر بار یک سیستم دقیق.',
+      storyLead: 'faratech_lab یک استودیو تکنولوژی خلاق مستقل است. ما وب‌سایت‌های مدرن، اپلیکیشن‌های وب مبتنی بر هوش مصنوعی، تجربیات دیجیتال تعاملی و راه‌حل‌های سفارشی وب می‌سازیم — هر بار یک سیستم دقیق.',
       offeringsHeading: 'آنچه می‌سازیم',
       offerings: [
         { title: 'وب‌سایت‌های مدرن', note: 'دقیق، سریع، ساخته‌شده حول یک ایده شفاف.' },

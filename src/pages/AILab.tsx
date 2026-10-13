@@ -9,16 +9,16 @@ export default function AILabPage() {
     en: {
       index: '05 / THE EXPERIMENTAL SIDE',
       title: <><span>AI</span> LAB</>,
-      subtitle: <>Intelligence is better<br />when it's <em>doing something.</em></>,
+      subtitle: <>Explore AI through <em>interaction.</em><br />Experiment with intelligent systems,<br />personalized recommendations and AI-assisted research.</>,
       footnote: 'EXPERIMENTAL BY NATURE / USEFUL BY DESIGN',
-      note: 'INTERACT WITH THE CONCEPTS ABOVE ↑',
+      note: 'EACH TOOL RUNS ON A LIVE MODEL ↑',
     },
     fa: {
       index: '05 / جنبه آزمایشی',
       title: 'آزمایشگاه هوش مصنوعی',
-      subtitle: <>هوشمندی بهتر است<br />وقتی <em>کاری انجام می‌دهد.</em></>,
+      subtitle: <>هوش مصنوعی را از طریق <em>تعامل</em> کاوش کنید.<br />با سیستم‌های هوشمند، پیشنهادهای شخصی‌سازی‌شده<br />و پژوهش با کمک هوش مصنوعی آزمایش کنید.</>,
       footnote: 'طبیعتاً آزمایشی / مفید به طراحی',
-      note: 'با مفاهیم بالا تعامل کنید ↑',
+      note: 'هر ابزار روی یک مدل زنده اجرا می‌شود ↑',
     },
   };
 

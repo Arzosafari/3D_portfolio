@@ -26,7 +26,7 @@ export default function HowWeBuild() {
     <div className="process-layout">
       <div className="process-sticky">
         <div className="process-display">
-          <div className="process-display__top"><span>THE NOVA METHOD</span><span>0{active + 1} / 04</span></div>
+          <div className="process-display__top"><span>THE faratech_lab METHOD</span><span>0{active + 1} / 04</span></div>
           <div className="process-number" aria-hidden="true">{steps[active].number}<span>.</span></div>
           <div className="process-display__bottom"><span className="process-dash"><i style={{ transform: `scaleX(${(active + 1) / steps.length})` }} /></span><span>{steps[active].note}</span></div>
           <div className="process-cross process-cross--a">+</div><div className="process-cross process-cross--b">+</div>

@@ -3,14 +3,14 @@ import Reveal from '../components/Reveal';
 import { useLanguage } from '../contexts/LanguageContext';
 import { projects } from '../data/projects';
 import { capabilities } from '../data/capabilities';
-import { labFeatures } from '../data/labFeatures';
+import { labTools } from '../data/labFeatures';
 
 export default function Home() {
   const { language } = useLanguage();
 
   const content = {
     en: {
-      eyebrow: 'NOVA AI STUDIO / INDEPENDENT CREATIVE TECHNOLOGY',
+      eyebrow: 'faratech_lab / INDEPENDENT CREATIVE TECHNOLOGY',
       title: <>We build<br /><span className="hero-line-two">digital <em>experiences</em></span><br />that <i>think.</i></>,
       description: 'AI-powered websites and digital experiences designed to help modern businesses stand out, connect, and grow.',
       exploreBtn: 'Explore our capabilities',
@@ -20,7 +20,7 @@ export default function Home() {
       coordinateTop: '01 / SYSTEM ENTRY',
       coordinateBottom: 'HUMAN-CENTERED INTELLIGENCE',
       baselineLeft: 'SCROLL TO ENTER',
-      baselineRight: 'A DIGITAL ENVIRONMENT BY NOVA ↓',
+      baselineRight: 'A DIGITAL ENVIRONMENT BY faratech_lab ↓',
       principle: ['STRATEGY', 'DESIGN', 'INTERACTION', 'INTELLIGENCE', 'EXPERIENCE'],
       principleNote: 'MADE TO WORK / MADE TO FEEL',
       workIndex: '02 / SELECTED WORK',
@@ -36,7 +36,7 @@ export default function Home() {
       aiTitle: <>Intelligence is better when it's <em>doing something.</em></>,
       aiDescription: 'The AI Lab holds working demonstrations of the intelligence we build into products — assistants, recommendations, personalization, and semantic search.',
       aiLink: 'Enter the AI Lab',
-      aiAssistantLink: 'Talk to NOVA AI',
+      aiAssistantLink: 'Talk to faratech_lab',
       aiNote: 'FOUR WORKING DEMOS / NO SMOKE AND MIRRORS',
       ctaEyebrow: 'THE NEXT THING STARTS HERE',
       ctaTitle: <>Have an idea<br />worth <em>building?</em></>,
@@ -45,7 +45,7 @@ export default function Home() {
       ctaSecondary: 'Meet the team',
     },
     fa: {
-      eyebrow: 'نووا ای‌آی استودیو / استودیو تکنولوژی خلاق مستقل',
+      eyebrow: 'faratech_lab / استودیو تکنولوژی خلاق مستقل',
       title: <>ما تجربیات دیجیتالی می‌سازیم<br /><span className="hero-line-two">که <em>می‌اندیشند.</em></span></>,
       description: 'وب‌سایت‌ها و تجربیات دیجیتال قدرت‌گرفته از هوش مصنوعی که برای کمک به کسب‌وکارهای مدرن طراحی شده‌اند تا متمایز شوند، ارتباط برقرار کنند و رشد کنند.',
       exploreBtn: 'توانایی‌های ما را بررسی کنید',
@@ -55,7 +55,7 @@ export default function Home() {
       coordinateTop: '01 / ورود به سیستم',
       coordinateBottom: 'هوشمندسازی با تمرکز بر انسان',
       baselineLeft: 'اسکرول کنید برای ورود',
-      baselineRight: 'محیط دیجیتال توسط نووا ↓',
+      baselineRight: 'محیط دیجیتال توسط faratech_lab ↓',
       principle: ['استراتژی', 'طراحی', 'تعامل', 'هوشمندی', 'تجربه'],
       principleNote: 'ساخته شده برای کار / ساخته شده برای حس',
       workIndex: '02 / کارهای منتخب',
@@ -71,7 +71,7 @@ export default function Home() {
       aiTitle: <>هوشمندی بهتر است<br />وقتی <em>کاری انجام می‌دهد.</em></>,
       aiDescription: 'آزمایشگاه هوش مصنوعی شامل نمایش‌های کاری از هوشمندی است که ما در محصولات می‌سازیم — دستیارها، توصیه‌ها، شخصی‌سازی و جستجوی معنایی.',
       aiLink: 'ورود به آزمایشگاه هوش مصنوعی',
-      aiAssistantLink: 'صحبت با نووا ای‌آی',
+      aiAssistantLink: 'صحبت با faratech_lab',
       aiNote: 'چهار دمو کاری / بدون نمایش توخالی',
       ctaEyebrow: 'چیز بعدی از اینجا شروع می‌شود',
       ctaTitle: <>ایده‌ای دارید<br />ارزش <em>ساختن؟</em></>,
@@ -105,7 +105,7 @@ export default function Home() {
         <div className="hero-baseline page-container"><span>{t.baselineLeft}</span><span className="baseline-line"><i /></span><span className="hero-baseline__right">{t.baselineRight}</span></div>
       </section>
 
-      <section className="principle-strip" data-environment="home-entry" aria-label="NOVA studio disciplines">
+      <section className="principle-strip" data-environment="home-entry" aria-label="faratech_lab studio disciplines">
         <div className="page-container principle-strip__inner"><span>{t.principle[0]}</span><i>✳</i><span>{t.principle[1]}</span><i>✳</i><span>{t.principle[2]}</span><i>✳</i><span>{t.principle[3]}</span><i>✳</i><span>{t.principle[4]}</span><span className="principle-strip__note">{t.principleNote}</span></div>
       </section>
 
@@ -176,7 +176,7 @@ export default function Home() {
             </div>
             <Reveal delay={160} className="home-ai-features">
               <ul>
-                {labFeatures.map((feature) => (
+                {labTools.map((feature) => (
                   <li key={feature.id}>
                     <Link to="/ai-lab">
                       <span>{feature.number} / 04</span>

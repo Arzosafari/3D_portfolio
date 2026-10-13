@@ -9,7 +9,7 @@ export default function AssistantPage() {
     en: {
       index: '02 / A BETTER FIRST QUESTION',
       title: <>A useful conversation beats <em>another form.</em></>,
-      description: 'Meet NOVA AI, a first-pass business guide. Tell it what you\'re working on and see how a thoughtful assistant can turn a vague idea into a sharper next step.',
+      description: 'Meet faratech_lab, a first-pass business guide. Tell it what you\'re working on and see how a thoughtful assistant can turn a vague idea into a sharper next step.',
       note1: 'Context-aware conversation',
       note2: 'Designed around real business needs',
       note3: 'A clear path to a human',
@@ -18,7 +18,7 @@ export default function AssistantPage() {
     fa: {
       index: '02 / سوال بهتر اول',
       title: <>یک مکالمه مفید بهتر از <em>یک فرم دیگر است.</em></>,
-      description: 'با نووا ای‌آی آشنا شوید، یک راهنمای تجاری اولیه. بگویید که روی چه چیزی کار می‌کنید و ببینید چگونه یک دستیار هوشمند می‌تواند یک ایده مبهم را به یک قدم بعدی واضح‌تر تبدیل کند.',
+      description: 'با faratech_lab آشنا شوید، یک راهنمای تجاری اولیه. بگویید که روی چه چیزی کار می‌کنید و ببینید چگونه یک دستیار هوشمند می‌تواند یک ایده مبهم را به یک قدم بعدی واضح‌تر تبدیل کند.',
       note1: 'مکالمه آگاه به زمینه',
       note2: 'طراحی شده بر اساس نیازهای واقعی کسب‌وکار',
       note3: 'مسیر واضح به یک انسان',

@@ -74,18 +74,18 @@ function check(name: string, element: ReactElement, mustContain: string[]) {
   }
 }
 
-check('Navigation', <Navigation />, ['NOVA', 'Main navigation', 'AI Lab', 'Our Team']);
+check('Navigation', <Navigation />, ['faratech', 'Main navigation', 'AI Lab', 'Our Team']);
 check('Home', <Home />, ['hero-title', 'home-entry', 'home-work', 'home-capabilities', 'home-ai', 'home-contact', 'AI Fashion Experience', 'Intelligent assistants']);
 check('Work', <Work />, ['work-title', 'AI Fashion Experience', 'Intelligent Health Platform', 'Smart Commerce']);
 check('Capabilities', <Capabilities />, ['capabilities-title', 'AI-powered websites', '3D &amp; interactive experiences', 'Intelligent assistants', 'Personalized experiences']);
-check('AILab', <AILab />, ['lab-title', 'AI assistant', 'Smart recommendation', 'Personalization', 'Intelligent search']);
+check('AILab', <AILab />, ['lab-title', 'Portfolio assistant', 'Fashion intelligence studio', 'Research &amp; paper explainer', 'AI concept explorer']);
 check('OurTeam', <OurTeam />, ['our-team-title', 'Founder &amp; Creative Director', 'AI Engineer', 'UX Designer']);
 check('About', <About />, ['about-title', 'about-story-title', 'about-method-title', 'about-principles-title', 'Discover', 'Launch']);
-check('Contact', <Contact />, ['contact-title', 'mailto:hello@nova.studio', 'HELLO@NOVA.STUDIO', 'Instagram', 'LinkedIn']);
-check('Assistant', <Assistant />, ['assistant-title', 'NOVA AI']);
+check('Contact', <Contact />, ['contact-title', 'mailto:hello@faratechlab.com', 'HELLO@FARATECHLAB.COM', 'Instagram', 'LinkedIn']);
+check('Assistant', <Assistant />, ['assistant-title', 'faratech_lab']);
 check('Discovery', <Discovery />, ['discovery-title']);
 check('Process', <Process />, ['process-title', 'Good digital experiences']);
-check('Footer', <Footer />, ['HELLO@NOVA.STUDIO', 'Footer navigation']);
+check('Footer', <Footer />, ['HELLO@FARATECHLAB.COM', 'Footer navigation']);
 function checkHost(name: string, initialEntry: string, mustContain: string[]) {
   try {
     const html = renderToString(

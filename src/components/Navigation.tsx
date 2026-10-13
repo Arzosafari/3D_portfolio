@@ -43,9 +43,9 @@ export default function Navigation() {
   return (
     <header className={`site-nav ${scrolled ? 'site-nav--scrolled' : ''} ${menuOpen ? 'site-nav--open' : ''}`}>
       <div className="nav-inner">
-        <Link className="brand-lockup" to="/" onClick={closeMenu} aria-label="NOVA AI Studio home">
+        <Link className="brand-lockup" to="/" onClick={closeMenu} aria-label="faratech_lab home">
           <BrandSymbol />
-          <span className="brand-wordmark">NOVA<span>AI STUDIO</span></span>
+          <span className="brand-wordmark">faratech<span>_lab</span></span>
         </Link>
 
         <nav className="desktop-nav" aria-label="Main navigation">
