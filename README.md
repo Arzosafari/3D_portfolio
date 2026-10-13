@@ -1,4 +1,4 @@
-# NOVA AI STUDIO — Immersive 3D Portfolio
+# faratech_lab — Immersive 3D Portfolio
 
 A responsive creative-technology studio website built as **one connected 3D universe of distinct page worlds**, in a white-and-navy design system. Every route keeps its own page, content and behavior; behind each one renders a purpose-built WebGL environment — never the same scene with different labels.
 
@@ -64,7 +64,7 @@ src/
 └── services/aiService.ts           # Offline mock + provider interface + same-origin HTTP adapter
 ```
 
-**Design tokens.** Deep midnight navy `#07152F`, dark blue `#0B1F3A`, rich navy `#102B50`, pure white, off-white `#F5F7FB`, cool silver `#DCE4EF`, and a single restrained icy-blue highlight `#8CB8F5` for lighting, active states, and focal points. Navy carries the cinematic environments; white/off-white carries readable content (typography, team cards, the project detail dialog, lab demo surfaces).
+**Design tokens.** Deep midnight navy `#07152F`, dark blue `#0B1F3A`, rich navy `#102B50`, pure white, off-white `#F5F7FB`, cool silver `#DCE4EF`, and a single restrained icy-blue highlight `#8CB8F5` for lighting, active states, and focal points. **White pages, navy worlds.** Navy carries the cinematic environments — the 3D world each route opens with. Everything readable is a white page printed on top of that world: navy ink, light rules, and one icy-blue accent. Home opens directly inside its atrium world; every other route renders a `.world-band` slice of its world above the white page.
 
 **Focus channel.** Page UI and its world stay in sync through `setFocus()` on the environment provider (`work:0`, `cap:2`, `lab:search`, `team:1`…). Scenes read `focusRef` inside `useFrame`, so hovering a card moves the camera without re-rendering the 3D tree.
 

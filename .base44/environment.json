@@ -5,7 +5,7 @@
   "secrets": [
     {
       "name": "AI_API_KEY",
-      "description": "API key for the OpenAI-compatible provider that powers the AI Lab tools (assistant, fashion studio, research explainer, concept explorer). Any provider exposing POST {AI_BASE_URL}/chat/completions works; set AI_BASE_URL/AI_MODEL in .env.base44-defaults to match. Without it the tools show an honest \"not connected\" state instead of answers.",
+      "description": "API key for the OpenAI-compatible provider that powers the AI Lab tools (portfolio assistant, fashion studio, research explainer, concept explorer). Defaults to OpenRouter (https://openrouter.ai/keys), with Groq supported by swapping AI_BASE_URL/AI_MODEL in .env.base44-defaults (https://console.groq.com/keys). Without it the tools show an honest \"not connected\" state instead of answers.",
       "requiredAtBoot": false
     }
   ]

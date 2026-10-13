@@ -22,10 +22,17 @@ function AdminLayout({ children }: { children: React.ReactNode }) {
 }
 
 function MainLayout({ children }: { children: React.ReactNode }) {
+  const { pathname } = useLocation();
+  // Home already opens inside its navy atrium world; every other route gets the
+  // same treatment as a band of live world above its white page.
+  const showWorldBand = pathname !== '/';
   return (
     <div className="site-content">
       <Navigation />
-      <main>{children}</main>
+      <main>
+        {showWorldBand && <div className="world-band" aria-hidden="true" />}
+        {children}
+      </main>
       <Footer />
     </div>
   );

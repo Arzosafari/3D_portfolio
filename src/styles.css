@@ -1,6 +1,6 @@
 :root {
   /* ============================================================
-     NOVA white & navy design system
+     faratech_lab white & navy design system
      navy for cinematic space, white for readable content,
      ice-blue as the single restrained highlight.
      ============================================================ */
@@ -731,8 +731,10 @@ main { flex: 1; }
 }
 
 /* ============================================================
-   NOVA navy theme — one connected universe of page worlds.
-   Navy environments, white typography, icy-blue focal light.
+   Navy world theme — one connected universe of 3D page worlds.
+   These rules skin the environments and the chrome that sits on
+   them; the WHITE PAGES, NAVY WORLDS layer at the end of this
+   file turns every readable surface into a white page.
    ============================================================ */
 html, body { min-height: 100%; background: #07152F; }
 body { color: var(--ink); background: #07152F; }
@@ -1242,3 +1244,276 @@ h1, h2, h3, h4 { font-family: var(--display); }
   .page-veil, .page-veil--active { animation: none; opacity: 0; }
   .work-preview-card:hover, .capability-row:hover, .offerings-list li:hover, .team-member-card:hover { transform: none; }
 }
+
+/* ============================================================
+   WHITE PAGES, NAVY WORLDS
+   The 3D environments stay navy — they are the worlds the site
+   moves through. Everything you read is a white page printed on
+   top of them: paper-white surfaces, navy ink, one ice-blue accent.
+   Appended last so it governs the navy world theme above.
+   ============================================================ */
+
+/* A slice of the live navy world above each page. */
+.world-band { height: clamp(190px, 32vh, 320px); }
+
+/* --- page surfaces ------------------------------------------ */
+.section-shell,
+.home-work, .home-capabilities, .home-ai, .home-contact,
+.capabilities-section, .assistant-section, .discovery-section, .process-section,
+.lab-section, .work-section, .about-section, .contact-section, .team-section {
+  background: #FFFFFF;
+}
+/* The home hero is the entry into the world, not a page. */
+.immersive-hero { background: transparent; }
+
+/* Every page surface reads as ink on paper. */
+.section-shell {
+  --ink: #0B1F3A;
+  --ink-soft: #102B50;
+  --silver: #33465F;
+  --off-white: #102B50;
+  --muted: #4C5C74;
+  --quiet: #6B7A92;
+  --line: rgba(11, 31, 58, .12);
+  --line-strong: rgba(11, 31, 58, .22);
+  --surface: #FFFFFF;
+  --surface-tint: rgba(245, 247, 251, .72);
+}
+.section { border-top-color: rgba(11, 31, 58, .07); }
+
+/* --- headings and body copy --------------------------------- */
+.section-heading h2, .assistant-copy h2, .discovery-intro h2, .about-title-wrap h2,
+.home-ai-copy h2, .home-contact-band h2, .stratum-side h2, .lab-heading h2,
+.work-heading h2, .team-heading h2, .contact-content h2,
+.project-card__title h3, .work-preview-card strong, .home-ai-features strong,
+.capability-row__title strong, .offerings-list strong, .method-steps strong,
+.contact-channel__value strong, .contact-channel__socials a, .recommendation-title-wrap h3,
+.discovery-question h3, .beliefs-list li, .capability-title-wrap strong,
+.capability-item:hover .capability-title-wrap strong, .capability-item.is-active .capability-title-wrap strong,
+.process-step__content strong, .lab-feature strong, .lab-feature.is-active strong,
+.project-card--active .project-card__title h3, .discovery-trust strong {
+  color: #0B1F3A;
+}
+
+.section-heading__copy > p, .section-heading-right > p, .assistant-copy .section-body,
+.discovery-intro .section-body, .home-ai-description, .home-contact-description,
+.stratum-lead, .offerings-list small, .method-steps small,
+.project-card__meta, .project-card__meta > span:last-child, .project-card__summary,
+.project-card__discipline, .work-disclaimer, .capability-row__title small,
+.capability-row__number, .lab-heading__row > p, .lab-footnote, .team-studio-note,
+.about-copy > p, .contact-channel__value, .contact-channel small, .contact-aside,
+.recommendation-summary, .recommendation-rationale, .recommendation-feature > span,
+.recommendation-feature p, .discovery-trust small, .discovery-time, .discovery-index-mark,
+.discovery-product-label strong, .discovery-product-label small, .process-side-note,
+.process-step__content small, .lab-feature small, .lab-feature__top,
+.capability-number, .capability-number i, .capability-toggle, .capability-detail p,
+.capability-tag, .capability-motif span, .process-step__index, .process-step__index i,
+.process-step__arrow, .contact-aside a, .stratum-body .text-link {
+  color: #4C5C74;
+}
+.eyebrow, .section-index { color: #5B6A83; }
+.section-index > span, .result-category { color: #2F6FD0; }
+/* the home hero still sits inside the navy world */
+.hero-eyebrow { color: #aab4c8; }
+
+/* --- buttons ------------------------------------------------ */
+.button--quiet { border-color: rgba(11, 31, 58, .22); color: #0B1F3A; background: #FFFFFF; }
+.button--quiet:hover { border-color: #5E93DC; color: #0B1F3A; background: #F6F9FF; }
+.button-play { border-color: rgba(11, 31, 58, .3); color: #33465F; }
+.text-link { color: #0B1F3A; }
+.text-link:hover { color: #2F6FD0; }
+.immersive-hero .button--quiet { border-color: rgba(205, 216, 238, .25); color: #e0e4ed; background: rgba(11, 31, 58, .58); }
+.immersive-hero .button--quiet:hover { border-color: rgba(156, 192, 242, .62); color: #fff; background: rgba(22, 52, 92, .82); }
+.immersive-hero .button-play { border-color: rgba(202, 215, 243, .46); color: #c1ccf3; }
+
+/* --- navigation over a white page --------------------------- */
+.site-nav--scrolled, .site-nav--open {
+  border-bottom-color: rgba(11, 31, 58, .09);
+  background: rgba(255, 255, 255, .93);
+  box-shadow: 0 6px 22px rgba(20, 35, 60, .06);
+}
+.site-nav--scrolled .brand-symbol, .site-nav--open .brand-symbol { color: #0B1F3A; }
+.site-nav--scrolled .brand-wordmark, .site-nav--open .brand-wordmark { color: #0B1F3A; }
+.site-nav--scrolled .brand-wordmark > span, .site-nav--open .brand-wordmark > span { color: #6B7A92; }
+.site-nav--scrolled .desktop-nav a, .site-nav--open .desktop-nav a { color: #556276; }
+.site-nav--scrolled .desktop-nav a:hover, .site-nav--open .desktop-nav a:hover,
+.site-nav--scrolled .desktop-nav a[aria-current="page"], .site-nav--open .desktop-nav a[aria-current="page"] { color: #0B1F3A; }
+.site-nav--scrolled .desktop-nav a::after, .site-nav--open .desktop-nav a::after { background: #5E93DC; }
+.site-nav--scrolled .nav-link__current, .site-nav--open .nav-link__current { background: #5E93DC; box-shadow: 0 0 0 4px rgba(94, 147, 220, .16); }
+.site-nav--scrolled .lang-toggle, .site-nav--open .lang-toggle { border-color: rgba(11, 31, 58, .14); color: #4C5C74; background: #FFFFFF; }
+.site-nav--scrolled .nav-cta, .site-nav--open .nav-cta { border-color: #5E93DC; color: #2F6FD0; background: transparent; }
+.site-nav--scrolled .nav-cta:hover, .site-nav--open .nav-cta:hover { color: #FFFFFF; background: #5E93DC; }
+.site-nav--scrolled .menu-toggle, .site-nav--open .menu-toggle { border-color: rgba(11, 31, 58, .16); background: rgba(255, 255, 255, .72); }
+.site-nav--scrolled .menu-toggle span, .site-nav--open .menu-toggle span { background: #33465F; }
+
+/* --- home: cards, capability rows, lab feature list ---------- */
+.work-preview-card {
+  border-color: rgba(11, 31, 58, .12);
+  background: #FFFFFF;
+  box-shadow: 0 14px 34px rgba(30, 48, 80, .07);
+}
+.work-preview-card::before { background: #5E93DC; opacity: 1; }
+.work-preview-card:hover { border-color: rgba(94, 147, 220, .5); box-shadow: 0 20px 44px rgba(30, 48, 80, .12); }
+.work-preview-card__meta { color: #6B7A92; }
+.work-preview-card__meta i { color: #2F6FD0; }
+.work-preview-card small { color: #4C5C74; }
+.work-preview-card__discipline { border-top-color: rgba(11, 31, 58, .1); color: #6B7A92; }
+.work-preview-card__discipline i { color: #2F6FD0; }
+
+.home-capability-rows { border-top-color: rgba(11, 31, 58, .18); }
+.home-capability-rows .reveal { border-bottom-color: rgba(11, 31, 58, .1); }
+.capability-row:hover { background: linear-gradient(90deg, rgba(94, 147, 220, .09), transparent 72%); }
+.capability-row__number { color: #6B7A92; }
+.capability-row__number i { color: #A8B0BD; }
+.capability-row__title small { color: #4C5C74; }
+.capability-row__symbol { border-color: rgba(11, 31, 58, .16); color: #2F6FD0; background: #F7F8FC; }
+.capability-row:hover .capability-row__symbol { border-color: rgba(94, 147, 220, .5); background: rgba(94, 147, 220, .12); }
+.capability-row__arrow { color: #8792A1; }
+
+.home-ai-note { color: #6B7A92; }
+.home-ai-features a { border-color: rgba(11, 31, 58, .12); background: #FFFFFF; }
+.home-ai-features a:hover { border-color: rgba(94, 147, 220, .45); background: #F6F9FF; }
+.home-ai-features a > span:first-child { color: #6B7A92; }
+.home-ai-features strong { color: #0B1F3A; }
+.home-ai-features small { color: #4C5C74; }
+.home-ai-features i { color: #2F6FD0; }
+
+/* --- capability system list --------------------------------- */
+.capability-list { border-top-color: rgba(11, 31, 58, .18); }
+.capability-item { border-bottom-color: rgba(11, 31, 58, .1); }
+.capability-symbol { border-color: rgba(11, 31, 58, .16); color: #2F6FD0; background: #F7F8FC; }
+.capability-item.is-active .capability-symbol { border-color: rgba(94, 147, 220, .5); color: #2F6FD0; background: rgba(94, 147, 220, .12); }
+.capability-motif i { background: #2F6FD0; }
+
+/* --- assistant / chat panel --------------------------------- */
+.assistant-backdrop-grid { opacity: .34; background-image: linear-gradient(rgba(75, 100, 165, .05) 1px, transparent 1px), linear-gradient(90deg, rgba(75, 100, 165, .05) 1px, transparent 1px); }
+.assistant-notes span { color: #435167; }
+.prototype-disclaimer { color: #768397; }
+.chat-panel { border-color: #DFE4EB; background: #FFFFFF; box-shadow: 0 18px 48px rgba(35, 52, 84, .08); }
+.chat-panel::before { background: #5E93DC; }
+.chat-panel__header { border-bottom-color: #E7EAF0; }
+.chat-day-divider::before, .chat-day-divider::after { background: #E7EAF0; }
+.chat-day-divider { color: #8D98A8; }
+.chat-agent-name strong, .message-name { color: #3A475D; }
+.chat-agent-name small, .message-name span { color: #8591A2; }
+.chat-avatar, .message-avatar { border-color: #D8E0F5; color: #2F6FD0; background: #F8F9FD; }
+.online-status { color: #627083; }
+.chat-reset { border-color: #E1E5EB; color: #718095; background: #FFFFFF; }
+.chat-reset:hover { border-color: #B7C5F2; color: #2F6FD0; }
+.chat-message__body p { color: #33465F; }
+.chat-message--user .chat-message__body { border-color: #D6DFFB; background: #EDF1FF; }
+.chat-message--user .chat-message__body p { color: #30416F; }
+.suggested-prompts button { border-color: #DCE2EB; color: #4A6285; background: #FBFCFD; }
+.suggested-prompts button span { color: #2F6FD0; }
+.suggested-prompts button:hover { border-color: #B9C7F4; color: #2F4F86; background: #F6F8FF; }
+.chat-composer { border-color: #DCE2EB; background: #FBFCFE; }
+.chat-composer:focus-within { border-color: #8DA2EF; }
+.chat-composer input { color: #0B1F3A; }
+.chat-composer input::placeholder { color: #909AAA; }
+.composer-shortcut { color: #9CA6B4; }
+.chat-privacy-note { color: #8793A3; }
+.chat-privacy-note span { color: #2F6FD0; }
+.chat-error { border-color: #EDC9C5; color: #A34D43; background: #FFF8F7; }
+.chat-error p { color: #86625D; }
+.chat-error button { color: #A34D43; }
+
+/* --- discovery flow ----------------------------------------- */
+.discovery-card { border-color: #DFE4EB; background: #FBFCFE; box-shadow: 0 18px 52px rgba(40, 55, 83, .08); }
+.discovery-card::after { background: #5E93DC; }
+.discovery-card__topline, .discovery-progress-row { border-color: #E5E9EF; }
+.discovery-trust-icon { border-color: #D7DEF2; color: #2F6FD0; background: #F9FAFF; }
+.discovery-product-label small { color: #8591A2; }
+.discovery-orbit-icon { border-color: #CBD5EE; }
+.discovery-orbit-icon::before { border-color: #DCE3F5; }
+.discovery-orbit-icon i { background: #2F6FD0; }
+.discovery-progress span { background: #DFE4EC; }
+.discovery-question .eyebrow { color: #718096; }
+.discovery-option { border-color: #E0E5EC; color: #536176; background: #FFFFFF; }
+.discovery-option:hover { border-color: #B7C5EF; color: #0B1F3A; }
+.discovery-option.is-selected { border-color: #8EA3ED; color: #30487F; background: #F0F3FF; }
+.option-index { color: #9AA4B3; }
+.discovery-option > i, .result-kicker i { color: #2F6FD0; }
+.recommendation-rationale { border-left-color: #9DB0F2; color: #778397; }
+.recommendation-features { border-top-color: #E4E8EF; }
+.recommendation-feature { border-bottom-color: #EDF0F4; }
+.result-fit strong { border-color: #CBD6F4; color: #2F6FD0; }
+.start-over { color: #778397; }
+.start-over:hover { color: #2F6FD0; }
+
+/* --- process ------------------------------------------------ */
+.process-display { border-color: #DCE2EB; background: radial-gradient(ellipse at 52% 46%, #DCE5FB, #EDF0F5 57%, #F5F6F8); }
+.process-display__top, .process-display__bottom, .process-side-note { color: #6F7D91; }
+.process-display__top span:last-child { color: #2F6FD0; }
+.process-display__bottom > span:last-child { color: #738095; }
+.process-dash { background: #D9DEEA; }
+.process-number { color: #50679F; }
+.process-number span { color: #2F6FD0; }
+.process-cross { color: #7E90C0; }
+.process-cross--b { color: #A2ADC5; }
+.process-steps { border-top-color: rgba(11, 31, 58, .18); }
+.process-step { border-bottom-color: rgba(11, 31, 58, .1); }
+.process-step.is-active .process-step__content strong { color: #0B1F3A; }
+
+/* --- AI lab ------------------------------------------------- */
+.lab-section::before { background: radial-gradient(ellipse at 72% 30%, rgba(94, 122, 216, .07), transparent 63%); }
+.lab-heading h2 { color: #0B1F3A; }
+.lab-heading h2 > span { color: #2F6FD0; }
+.lab-experience { border-color: #DFE4EB; background: #F8F9FB; box-shadow: 0 18px 46px rgba(35, 52, 84, .07); }
+.lab-feature-list { border-right-color: #E0E4EB; }
+.lab-feature { border-bottom-color: #E3E7ED; }
+.lab-feature__top { color: #778498; }
+.lab-feature__top i { border-color: #DCE2EC; color: #5973D0; }
+.lab-feature strong { color: #59677C; }
+.lab-feature.is-active { background: linear-gradient(90deg, rgba(70, 101, 232, .055), transparent); }
+.lab-feature.is-active strong { color: #0B1F3A; }
+.lab-feature.is-active .lab-feature__top i { border-color: #AEBEF1; color: #2F6FD0; background: #FFFFFF; }
+.lab-feature__line i { background: #5E93DC; }
+.lab-preview-caption strong, .lab-preview-caption i { color: #5E93DC; }
+.lab-preview-topbar, .lab-preview-caption { border-color: #E6E9EE; color: #778499; }
+.lab-preview-topbar > div i { background: #C4CCD7; }
+.lab-preview-topbar > div i:first-child { background: #7387C8; }
+.preview-live { color: #67758A; }
+.lab-footnote { color: #78869A; }
+
+/* the one demo panel the navy theme darkened returns to its light mockup */
+.lab-chat-demo { color: #29364A; background: #FFFFFF; }
+.lab-chat-demo .demo-app-header, .lab-chat-demo .demo-chat-head { border-color: #E7EAF0; color: #617086; }
+.lab-chat-demo .demo-chat-window { border-color: #E3E7ED; background: #FBFCFE; }
+.lab-chat-demo .demo-chat-head strong { color: #29364A; }
+.lab-chat-demo .demo-chat-head small, .lab-chat-demo .demo-more { color: #8591A1; }
+.lab-chat-demo .demo-bubble--assistant { border-color: #E7EAF0; color: #29364A; background: #FFFFFF; }
+.lab-chat-demo .demo-bubble--user { color: #30416F; background: #EAF0FF; }
+.lab-chat-demo .demo-response p { color: #58677C; }
+.lab-chat-demo .demo-chat-input { border-color: #E1E5EB; color: #909BAA; background: #FFFFFF; }
+.lab-chat-demo .demo-quick-questions button { border-color: #DFE4ED; color: #718096; background: transparent; }
+.lab-chat-demo .demo-quick-questions button.is-active, .lab-chat-demo .demo-quick-questions button:hover { border-color: #C3CFF1; color: #3E5AB9; background: #F0F3FF; }
+
+/* --- work --------------------------------------------------- */
+.project-card { border-bottom-color: #D8DEE7; }
+.project-card__art { border-color: rgba(11, 31, 58, .08); }
+.project-card__title > span { color: #7E8BA0; }
+.project-card__discipline { border-top-color: #E1E5EB; }
+.project-card--active .project-card__art { border-color: rgba(94, 147, 220, .5); box-shadow: 0 0 40px rgba(94, 147, 220, .16); }
+.project-card__meta i { color: #2F6FD0; }
+
+/* --- about -------------------------------------------------- */
+.about-symbol > span, .about-symbol > b { background: #5E93DC; }
+.about-symbol > i { background: #8CB8F5; }
+.beliefs-list li { color: #33465F; }
+.beliefs-list li i, .principles-row i { color: #2F6FD0; }
+.principles-row { color: #6B7A92; }
+.about-cta { border-top-color: rgba(11, 31, 58, .1); background: #F5F7FB; }
+
+/* --- contact ------------------------------------------------ */
+.contact-section::before { background: radial-gradient(ellipse at 70% 46%, rgba(94, 147, 220, .1), transparent 48%); }
+.contact-channel { border-color: rgba(11, 31, 58, .12); background: #FFFFFF; }
+.contact-channel:hover { border-color: rgba(94, 147, 220, .45); }
+.contact-channel__label { color: #6B7A92; }
+.contact-channel__value > a:hover strong, .contact-channel__socials a:hover { color: #2F6FD0; }
+
+/* --- project detail dialog ---------------------------------- */
+.concept-modal-backdrop { background: rgba(18, 26, 39, .58); }
+.concept-modal { border-color: #D8DEE8; background: #FFFFFF; box-shadow: 0 25px 85px rgba(23, 35, 55, .2); }
+.concept-modal__header { border-bottom-color: #E7EAF0; color: #718096; }
+.concept-modal__header button { border-color: #DCE2EB; color: #657388; background: #FFFFFF; }
+.concept-modal .eyebrow { color: #64789B; }

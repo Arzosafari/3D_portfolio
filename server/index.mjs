@@ -373,6 +373,6 @@ const server = createServer(async (request, response) => {
 });
 
 server.listen(PORT, HOST, () => {
-  const state = aiConfigured() ? `model ${aiModel()} via ${process.env.AI_BASE_URL || 'https://api.openai.com/v1'}` : 'NOT configured (no AI_API_KEY)';
+  const state = aiConfigured() ? `model ${aiModel()} via ${process.env.AI_BASE_URL || 'https://openrouter.ai/api/v1'}` : 'NOT configured (no AI_API_KEY)';
   console.log(`[ai] listening on ${HOST}:${PORT} — ${state}`);
 });

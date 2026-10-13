@@ -144,7 +144,7 @@ export default function DiscoveryFlow() {
         <div className="recommendation-result">
           <div className="recommendation-header">
             <span className="result-kicker"><i /> YOUR RECOMMENDED EXPERIENCE</span>
-            <span className="result-fit">NOVA MATCH <strong>96</strong></span>
+            <span className="result-fit">faratech_lab MATCH <strong>96</strong></span>
           </div>
           <div className="recommendation-title-wrap">
             <span className="result-category">{recommendation.category}</span>

@@ -4,9 +4,9 @@ import { aiService, type ChatMessage } from '../../services/aiService';
 import { useEnvironment } from '../../environment/EnvironmentProvider';
 
 const welcomeMessage: ChatMessage = {
-  id: 'nova-welcome',
+  id: 'faratech-lab-welcome',
   role: 'assistant',
-  content: 'Hi, I’m NOVA AI. Tell me what you’re building and I’ll help you find a useful place to start.',
+  content: 'Hi, I’m faratech_lab. Tell me what you’re building and I’ll help you find a useful place to start.',
 };
 
 const suggestedPrompts = [
@@ -131,11 +131,11 @@ export default function ChatAssistant() {
   };
 
   return (
-    <div className="chat-panel" aria-label="NOVA AI business assistant">
+    <div className="chat-panel" aria-label="faratech_lab business assistant">
       <div className="chat-panel__header">
         <div className="chat-agent-lockup">
           <span className="chat-avatar"><BrandSymbol small /></span>
-          <span className="chat-agent-name"><strong>NOVA AI</strong><small>Business experience guide</small></span>
+          <span className="chat-agent-name"><strong>faratech_lab</strong><small>Business experience guide</small></span>
         </div>
         <div className="chat-header-actions">
           <span className="online-status"><i /> Online</span>
@@ -151,7 +151,7 @@ export default function ChatAssistant() {
           <div className={`chat-message chat-message--${message.role}`} key={message.id}>
             {message.role === 'assistant' && <span className="message-avatar"><BrandSymbol small /></span>}
             <div className="chat-message__body">
-              {message.role === 'assistant' && <span className="message-name">NOVA AI <span>· just now</span></span>}
+              {message.role === 'assistant' && <span className="message-name">faratech_lab <span>· just now</span></span>}
               <p>{message.content}</p>
             </div>
           </div>
@@ -164,20 +164,20 @@ export default function ChatAssistant() {
           </div>
         )}
         {loading && (
-          <div className="chat-message chat-message--assistant chat-typing" role="status" aria-label="NOVA AI is thinking">
+          <div className="chat-message chat-message--assistant chat-typing" role="status" aria-label="faratech_lab is thinking">
             <span className="message-avatar"><BrandSymbol small /></span>
-            <div className="chat-message__body"><span className="message-name">NOVA AI <span>thinking</span></span><div className="typing-dots"><i /><i /><i /></div></div>
+            <div className="chat-message__body"><span className="message-name">faratech_lab <span>thinking</span></span><div className="typing-dots"><i /><i /><i /></div></div>
           </div>
         )}
-        {error && <div className="chat-error" role="alert"><span>We couldn’t reach NOVA AI.</span><p>{error}</p><button type="button" onClick={() => void retryLast()}>Try again ↗</button></div>}
+        {error && <div className="chat-error" role="alert"><span>We couldn’t reach faratech_lab.</span><p>{error}</p><button type="button" onClick={() => void retryLast()}>Try again ↗</button></div>}
         <div ref={endRef} />
       </div>
 
       <form className="chat-composer" onSubmit={handleSubmit}>
-        <label className="sr-only" htmlFor="nova-chat-input">Message NOVA AI</label>
+        <label className="sr-only" htmlFor="faratech-chat-input">Message faratech_lab</label>
         <input
           ref={inputRef}
-          id="nova-chat-input"
+          id="faratech-chat-input"
           type="text"
           value={input}
           maxLength={500}

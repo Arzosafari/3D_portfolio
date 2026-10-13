@@ -7,8 +7,8 @@
  * never sent to the browser and never logged.
  */
 
-const BASE_URL = (process.env.AI_BASE_URL || 'https://api.openai.com/v1').replace(/\/+$/, '');
-const MODEL = process.env.AI_MODEL || 'gpt-4o-mini';
+const BASE_URL = (process.env.AI_BASE_URL || 'https://openrouter.ai/api/v1').replace(/\/+$/, '');
+const MODEL = process.env.AI_MODEL || 'openai/gpt-4o-mini';
 const API_KEY = (process.env.AI_API_KEY || '').trim();
 const TIMEOUT_MS = Number(process.env.AI_TIMEOUT_MS || 45000);
 

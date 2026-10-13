@@ -4,6 +4,16 @@
 Vite + React 19 + TypeScript SPA (3D portfolio, react-three-fiber/three) with a
 small Node backend for the AI Lab. Two app services, no database.
 
+## Design: white pages, navy worlds
+The 3D environments are navy and are always the backdrop
+(`.environment-stage`). Every readable surface is a **white page** on top of
+them: `.section-shell` and the per-page section classes are white with navy ink.
+`styles.css` ends with a `WHITE PAGES, NAVY WORLDS` layer that governs the navy
+world theme above it. `MainLayout` (`src/App.tsx`) renders a `.world-band` — a
+slice of the live world — above every route except `/`, which opens inside the
+home hero. Only the environment, the home hero, the principle strip and the
+footer stay navy.
+
 ## Run it (Base44 sandbox)
 ```bash
 docker compose -f docker-compose.base44.yml up -d --build
@@ -28,10 +38,11 @@ no install step, no lockfile, nothing to keep in sync. Node 22 has global
   `/run/base44/app.env` (listed last in `env_file:`, so it always wins). Without
   it every AI tool returns an honest 503 (“not connected yet”) — it never falls
   back to scripted answers.
-- `AI_BASE_URL` / `AI_MODEL` — non-secret defaults in `.env.base44-defaults`.
-  Any OpenAI-compatible endpoint works (`{AI_BASE_URL}/chat/completions`):
-  OpenAI, OpenRouter, Groq, Together, a local gateway. Point these at the chosen
-  provider; no code change needed.
+- `AI_BASE_URL` / `AI_MODEL` — non-secret defaults in `.env.base44-defaults`,
+  set to **OpenRouter** (`https://openrouter.ai/api/v1`, `openai/gpt-4o-mini`).
+  Any OpenAI-compatible endpoint works (`{AI_BASE_URL}/chat/completions`); the
+  file carries the one-line Groq swap (`https://api.groq.com/openai/v1`,
+  `llama-3.3-70b-versatile`). No code change needed either way.
 - `VITE_AI_PROVIDER=http` + `VITE_AI_API_BASE=/api/ai` (compose `environment:`)
   switch the frontend AI service to the real backend. This is site-wide: the
   `/assistant` and `/discovery` pages also use it, so before the key is added
@@ -74,11 +85,12 @@ per-concept diagrams; persistence of outfit feedback (in-session only, used to
 re-run the same request); any storage/accounts. There is no DB.
 
 ## Outstanding content work
-The site still carries invented studio fiction: the “NOVA AI STUDIO” brand, three
-concept projects (`src/data/projects.ts`), an Our Team page (`src/data/team.ts`),
-and placeholder contact links (`hello@nova.studio`, generic Instagram/LinkedIn).
-These need the owner's real name, links and project details before they are
-accurate. The owner's real projects (DermaSense AI, Fashion AI, Gold Price
+The brand is now `faratech_lab`. The site still carries invented studio fiction:
+three concept projects (`src/data/projects.ts`), an Our Team page
+(`src/data/team.ts`), and placeholder contact links (`hello@faratechlab.com` —
+a stand-in that still needs the owner's real address — plus generic
+Instagram/LinkedIn). These need the owner's real links and project details
+before they are accurate. The owner's real projects (DermaSense AI, Fashion AI, Gold Price
 Prediction, Dynamic Traffic Control, Robotics & Computer Vision) are currently
 described only in `server/knowledge.mjs`, for the assistant.
 
